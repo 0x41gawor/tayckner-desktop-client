@@ -13,8 +13,11 @@ class HelloApplication : Application() {
         stage.scene = scene
         stage.show()
     }
-}
 
-fun main() {
-    Application.launch(HelloApplication::class.java)
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            launch(HelloApplication::class.java)
+        }
+    }
 }
