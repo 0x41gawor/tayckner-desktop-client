@@ -1,9 +1,9 @@
-package pl.gawor.taycknerdesktopclient
+package pl.gawor.taycknerdesktopclient.controller
 
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 
-class HelloController {
+class Controller {
     @FXML
     private lateinit var welcomeText: Label
 

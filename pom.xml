@@ -11,20 +11,20 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.7.1</junit.version>
-        <kotlin.version>1.5.10</kotlin.version>
+        <junit.version>5.8.2</junit.version>
+        <kotlin.version>1.6.0</kotlin.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>17.0.0.1</version>
+            <version>17.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>17.0.0.1</version>
+            <version>17.0.2</version>
         </dependency>
 
         <dependency>
@@ -68,7 +68,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>pl.gawor.taycknerdesktopclient/pl.gawor.taycknerdesktopclient.HelloApplication
+                            <mainClass>pl.gawor.taycknerdesktopclient/pl.gawor.taycknerdesktopclient.TaycknerApplication
                             </mainClass>
                         </configuration>
                     </execution>

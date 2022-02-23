@@ -5,5 +5,6 @@ module pl.gawor.taycknerdesktopclient {
 
 
     opens pl.gawor.taycknerdesktopclient to javafx.fxml;
+    opens pl.gawor.taycknerdesktopclient.controller to javafx.fxml;
     exports pl.gawor.taycknerdesktopclient;
 }
