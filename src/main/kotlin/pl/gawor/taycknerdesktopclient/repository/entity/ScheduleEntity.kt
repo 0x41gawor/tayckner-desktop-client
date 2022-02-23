@@ -2,7 +2,7 @@ package pl.gawor.taycknerdesktopclient.repository.entity
 
 import java.time.LocalDateTime
 
-data class Schedule(
+data class ScheduleEntity(
     val id: Int,
     val name: String,
     val startTime: LocalDateTime,
