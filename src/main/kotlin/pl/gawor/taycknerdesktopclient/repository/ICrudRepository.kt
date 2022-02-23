@@ -1,7 +1,4 @@
 package pl.gawor.taycknerdesktopclient.repository
-
-import pl.gawor.taycknerdesktopclient.repository.entity.User
-
 interface ICrudRepository<Entity> {
     fun list(): List<Entity>?
     fun create(entity: Entity): Entity?

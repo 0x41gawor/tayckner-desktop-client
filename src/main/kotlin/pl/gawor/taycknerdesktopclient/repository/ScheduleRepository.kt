@@ -2,7 +2,6 @@ package pl.gawor.taycknerdesktopclient.repository
 
 import pl.gawor.taycknerdesktopclient.repository.dbhelper.DbHelper
 import pl.gawor.taycknerdesktopclient.repository.entity.Schedule
-import pl.gawor.taycknerdesktopclient.repository.entity.User
 
 class ScheduleRepository : ICrudRepository<Schedule> {
 

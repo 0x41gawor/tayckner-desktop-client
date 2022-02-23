@@ -2,10 +2,11 @@ package pl.gawor.taycknerdesktopclient.repository.dbhelper
 
 import java.sql.*
 
+private const val DB_URL = "jdbc:mysql://localhost:3306/tayckner_desktop_db?serverTimezone=UTC"
+private const val DB_USER = "root"
+private const val DB_PASSWORD = "ejek"
+
 class DbHelper {
-    val DB_URL = "jdbc:mysql://localhost:3306/tayckner_desktop_db?serverTimezone=UTC"
-    val DB_USER = "root"
-    val DB_PASSWORD = "ejek"
 
     private fun getConnection(): Connection? {
         val connection: Connection
