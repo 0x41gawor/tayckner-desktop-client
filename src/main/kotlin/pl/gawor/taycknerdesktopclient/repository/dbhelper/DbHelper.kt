@@ -1,9 +1,6 @@
 package pl.gawor.taycknerdesktopclient.repository.dbhelper
 
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.ResultSet
-import java.sql.Statement
+import java.sql.*
 
 class DbHelper {
     val DB_URL = "jdbc:mysql://localhost:3306/tayckner_desktop_db?serverTimezone=UTC"
@@ -13,7 +10,8 @@ class DbHelper {
     private fun getConnection(): Connection? {
         val connection: Connection
         return try {
-            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD
+            connection = DriverManager.getConnection(
+                DB_URL, DB_USER, DB_PASSWORD
             )
             connection
         } catch (ex: Exception) {
@@ -44,5 +42,18 @@ class DbHelper {
             ex.printStackTrace()
         }
         return resultSet
+    }
+
+    fun executeInsertQuery(query: String): Int {
+        val connection = getConnection()
+        val statement: PreparedStatement = connection!!.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)
+        statement.execute()
+
+        val resultSet = statement.generatedKeys
+        var generatedKey = 0
+        if (resultSet.next()) {
+            generatedKey = resultSet.getInt(1)
+        }
+        return generatedKey
     }
 }
