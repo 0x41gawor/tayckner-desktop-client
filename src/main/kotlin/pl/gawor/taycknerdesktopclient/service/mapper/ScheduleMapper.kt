@@ -14,12 +14,12 @@ class ScheduleMapper : IMapper<Schedule, ScheduleEntity> {
     private val userMapper = UserMapper()
     private val userService = Service<User, UserEntity>(userRepository, userMapper)
 
-    override fun modelToEntity(model: Schedule?) : ScheduleEntity {
+    override fun modelToEntity(model: Schedule?): ScheduleEntity {
         if (model == null) return ScheduleEntity()
         return ScheduleEntity(model.id, model.name, model.startTime, model.endTime, model.duration, model.user.id)
     }
 
-    override fun entityToModel(entity: ScheduleEntity?) : Schedule? {
+    override fun entityToModel(entity: ScheduleEntity?): Schedule? {
         if (entity == null) return null
         var user = userService.read(entity.userId)
         if (user == null) {

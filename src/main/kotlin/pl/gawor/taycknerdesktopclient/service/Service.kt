@@ -5,12 +5,12 @@ import pl.gawor.taycknerdesktopclient.service.mapper.IMapper
 
 class Service<Model, Entity>(
     private val repository: ICrudRepository<Entity>,
-    private val mapper: IMapper<Model, Entity>)
-    : ICrudService<Model> {
+    private val mapper: IMapper<Model, Entity>
+) : ICrudService<Model> {
 
     override fun list(): List<Model>? {
         val entities = repository.list()
-        val models  = ArrayList<Model>()
+        val models = ArrayList<Model>()
         if (entities != null) {
             for (entity in entities) {
                 val model = mapper.entityToModel(entity)
