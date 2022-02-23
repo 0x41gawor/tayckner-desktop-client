@@ -1,21 +1,21 @@
 package pl.gawor.taycknerdesktopclient.repository
 
 import pl.gawor.taycknerdesktopclient.repository.dbhelper.DbHelper
-import pl.gawor.taycknerdesktopclient.repository.entity.User
+import pl.gawor.taycknerdesktopclient.repository.entity.UserEntity
 
-class UserRepository : ICrudRepository<User> {
+class UserRepository : ICrudRepository<UserEntity> {
 
     private val dbHelper = DbHelper()
 
-    override fun list(): List<User>? {
-        val list = ArrayList<User>()
+    override fun list(): List<UserEntity>? {
+        val list = ArrayList<UserEntity>()
         val query = "select * from user"
         val resultSet = dbHelper.executeResultQuery(query)
 
         if (resultSet != null) {
-            var entity: User?
+            var entity: UserEntity?
             while (resultSet.next()) {
-                entity = User(
+                entity = UserEntity(
                     resultSet.getInt("id"),
                     resultSet.getString("username"),
                     resultSet.getString("password"),
@@ -30,7 +30,7 @@ class UserRepository : ICrudRepository<User> {
         return null
     }
 
-    override fun create(entity: User): User? {
+    override fun create(entity: UserEntity): UserEntity? {
         val query =
             "insert into user value (0, '${entity.username}', '${entity.password}', '${entity.firstName}', '${entity.lastName}', '${entity.email}')"
         val id = dbHelper.executeInsertQuery(query)
@@ -38,12 +38,12 @@ class UserRepository : ICrudRepository<User> {
         return read(id)
     }
 
-    override fun read(id: Int): User? {
+    override fun read(id: Int): UserEntity? {
         val query = "select * from user where id = $id"
         val resultSet = dbHelper.executeResultQuery(query)
         if (resultSet != null && resultSet.next()) {
-            val entity: User?
-            entity = User(
+            val entity: UserEntity?
+            entity = UserEntity(
                 resultSet.getInt("id"),
                 resultSet.getString("username"),
                 resultSet.getString("password"),
@@ -56,7 +56,7 @@ class UserRepository : ICrudRepository<User> {
         return null
     }
 
-    override fun update(id: Int, entity: User): User? {
+    override fun update(id: Int, entity: UserEntity): UserEntity? {
         val query =
             "update user set username = '${entity.username}', password = '${entity.password}', first_name = '${entity.firstName}', " +
                     "last_name = '${entity.lastName}', email = '${entity.email}' where id = $id"
