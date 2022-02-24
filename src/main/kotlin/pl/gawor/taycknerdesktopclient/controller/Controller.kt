@@ -14,9 +14,7 @@ import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.util.DateDir
 import pl.gawor.taycknerdesktopclient.model.Schedule
 import pl.gawor.taycknerdesktopclient.repository.ScheduleRepository
-import pl.gawor.taycknerdesktopclient.repository.entity.ScheduleEntity
 import pl.gawor.taycknerdesktopclient.service.ScheduleService
-import pl.gawor.taycknerdesktopclient.service.Service
 import pl.gawor.taycknerdesktopclient.service.mapper.ScheduleMapper
 import java.net.URL
 import java.time.LocalDate
@@ -58,6 +56,16 @@ class Controller : Initializable {
         service = ScheduleService(repository, mapper)
 
         setSelectedDate(DateDir.TODAY)
+        refreshList()
+    }
+
+    @FXML private fun button_nextOnMouseClicked() {
+        setSelectedDate(DateDir.NEXT)
+        refreshList()
+    }
+
+    @FXML private fun button_prevOnMouseClicked() {
+        setSelectedDate(DateDir.PREV)
         refreshList()
     }
 
