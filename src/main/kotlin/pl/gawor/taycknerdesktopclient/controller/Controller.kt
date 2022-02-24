@@ -15,6 +15,7 @@ import pl.gawor.taycknerdesktopclient.controller.util.DateDir
 import pl.gawor.taycknerdesktopclient.model.Schedule
 import pl.gawor.taycknerdesktopclient.repository.ScheduleRepository
 import pl.gawor.taycknerdesktopclient.repository.entity.ScheduleEntity
+import pl.gawor.taycknerdesktopclient.service.ScheduleService
 import pl.gawor.taycknerdesktopclient.service.Service
 import pl.gawor.taycknerdesktopclient.service.mapper.ScheduleMapper
 import java.net.URL
@@ -48,15 +49,38 @@ class Controller : Initializable {
 
     private var models = ArrayList<Schedule>()
 
-    private lateinit var service: Service<Schedule, ScheduleEntity>
+    private lateinit var service: ScheduleService
 
 
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         val repository = ScheduleRepository()
         val mapper = ScheduleMapper()
-        service = Service(repository, mapper)
+        service = ScheduleService(repository, mapper)
 
         setSelectedDate(DateDir.TODAY)
+        refreshList()
+    }
+
+    private fun refreshList() {
+        models = service.list(selectedDate) as ArrayList<Schedule>
+
+        gridPane.children.clear()
+
+        for ((row, model) in models.withIndex()) {
+            val fxmlLoader = FXMLLoader(TaycknerApplication::class.java.getResource("view/item_schedule.fxml"))
+            val hbox: HBox = fxmlLoader.load()
+
+            val itemController = fxmlLoader.getController<ItemScheduleController>()
+            itemController.set(model)
+            gridPane.add(hbox, 1, row)
+            gridPane.minWidth = Region.USE_COMPUTED_SIZE
+            gridPane.minHeight = Region.USE_COMPUTED_SIZE
+            gridPane.maxWidth = Region.USE_COMPUTED_SIZE
+            gridPane.maxHeight = Region.USE_COMPUTED_SIZE
+            gridPane.prefWidth = Region.USE_COMPUTED_SIZE
+            gridPane.prefHeight = Region.USE_COMPUTED_SIZE
+            GridPane.setMargin(hbox, Insets(7.0))
+        }
     }
 
     private fun setSelectedDate(sel: DateDir) {

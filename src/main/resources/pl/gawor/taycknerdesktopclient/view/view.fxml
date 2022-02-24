@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0"
-            prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2"  xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.Controller">
     <BorderPane prefHeight="1013.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <top>
             <HBox fx:id="hbox_top" alignment="CENTER" prefHeight="71.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
@@ -72,10 +71,13 @@
       <center>
           <HBox fx:id="hbox_center" alignment="CENTER" prefHeight="764.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
               <ScrollPane fx:id="scroll_pane" prefHeight="764" prefWidth="1040">
-                  <GridPane fx:id="gridPane" prefHeight="764.0" prefWidth="1000">
+                  <GridPane fx:id="gridPane" alignment="CENTER" prefHeight="764.0" prefWidth="1000">
                       <rowConstraints>
                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       </rowConstraints>
+                      <padding>
+                          <Insets top="10.0" />
+                      </padding>
                   </GridPane>
               </ScrollPane>
           </HBox>
