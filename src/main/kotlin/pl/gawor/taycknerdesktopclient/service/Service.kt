@@ -3,9 +3,9 @@ package pl.gawor.taycknerdesktopclient.service
 import pl.gawor.taycknerdesktopclient.repository.ICrudRepository
 import pl.gawor.taycknerdesktopclient.service.mapper.IMapper
 
-class Service<Model, Entity>(
-    private val repository: ICrudRepository<Entity>,
-    private val mapper: IMapper<Model, Entity>
+open class Service<Model, Entity>(
+    internal var repository: ICrudRepository<Entity>,
+    internal val mapper: IMapper<Model, Entity>
 ) : ICrudService<Model> {
 
     override fun list(): List<Model>? {
