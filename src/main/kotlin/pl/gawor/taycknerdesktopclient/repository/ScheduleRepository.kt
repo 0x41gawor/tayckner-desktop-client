@@ -2,32 +2,16 @@ package pl.gawor.taycknerdesktopclient.repository
 
 import pl.gawor.taycknerdesktopclient.repository.dbhelper.DbHelper
 import pl.gawor.taycknerdesktopclient.repository.entity.ScheduleEntity
+import java.time.LocalDate
+import java.time.temporal.TemporalQuery
 
 class ScheduleRepository : ICrudRepository<ScheduleEntity> {
 
     private val dbHelper = DbHelper()
 
     override fun list(): List<ScheduleEntity>? {
-        val list = ArrayList<ScheduleEntity>()
         val query = "select * from schedule"
-        val resultSet = dbHelper.executeResultQuery(query)
-
-        if (resultSet != null) {
-            var entity: ScheduleEntity?
-            while (resultSet.next()) {
-                entity = ScheduleEntity(
-                    resultSet.getInt("id"),
-                    resultSet.getString("name"),
-                    resultSet.getTimestamp("start_time").toLocalDateTime(),
-                    resultSet.getTimestamp("end_time").toLocalDateTime(),
-                    resultSet.getDouble("duration"),
-                    resultSet.getInt("user_id")
-                )
-                list.add(entity)
-            }
-            return list
-        }
-        return null
+       return listQuery(query)
     }
 
     override fun create(entity: ScheduleEntity): ScheduleEntity? {
@@ -67,5 +51,32 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
         val query = "delete from schedule where id = $id"
         dbHelper.executeUpdateQuery(query)
         return true
+    }
+
+    fun list(date: LocalDate): List<ScheduleEntity>? {
+        val query = "select * from schedule where start_time like '%$date%'"
+        return listQuery(query)
+    }
+
+    private fun listQuery(query: String) : List<ScheduleEntity>? {
+        val list = ArrayList<ScheduleEntity>()
+        val resultSet = dbHelper.executeResultQuery(query)
+
+        if (resultSet != null) {
+            var entity: ScheduleEntity?
+            while (resultSet.next()) {
+                entity = ScheduleEntity(
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getTimestamp("start_time").toLocalDateTime(),
+                    resultSet.getTimestamp("end_time").toLocalDateTime(),
+                    resultSet.getDouble("duration"),
+                    resultSet.getInt("user_id")
+                )
+                list.add(entity)
+            }
+            return list
+        }
+        return null
     }
 }
