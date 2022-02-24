@@ -18,7 +18,7 @@ primary key (`id`)
 CREATE TABLE `schedule` (
 `id` int NOT NULL auto_increment,
 `name` varchar(45) NOT NULL,
-`start_time` datetime NOT NULL,
+`start_time` datetime,
 `end_time` datetime,
 `duration` double,
 `user_id` int  NOT NULL,
@@ -36,5 +36,19 @@ on delete no action on update no action
 INSERT INTO `user` VALUES
 	(1, 'test_user', 'secret', 'test', 'testowski', 'test@test.pl');
     
-select * from `user`;
+INSERT INTO `schedule` VALUES
+	(1, 'test', now(), now(), 0.5, 1);
 
+insert into schedule value (3, 'elo', now(), now(), 0.5, 1);
+
+USE `tayckner_desktop_db`;
+select * from `user`;
+select * from `schedule`;
+
+insert into user value (0, '', '','','','');
+	
+update user set username = '', password = '', first_name = '', last_name = '', email = '' where id = 3;
+
+update schedule set name = 'fd', start_time = now(), end_time = now(), duration = 0.5, user_id = 1 where id = 3;  
+
+select * from user where id = 3
