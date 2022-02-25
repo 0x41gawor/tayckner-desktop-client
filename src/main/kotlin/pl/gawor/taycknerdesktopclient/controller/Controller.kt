@@ -63,6 +63,8 @@ class Controller : Initializable, ISubscriber<Schedule> {
 
     private lateinit var service: ScheduleService
 
+    private var selectedItemModel: Schedule? = null
+
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         val repository = ScheduleRepository()
         val mapper = ScheduleMapper()
@@ -102,6 +104,7 @@ class Controller : Initializable, ISubscriber<Schedule> {
 
             val itemController = fxmlLoader.getController<ItemScheduleController>()
             itemController.set(model)
+            itemController.subscribe(this)
             gridPane.add(hbox, 1, row)
             gridPane.minWidth = Region.USE_COMPUTED_SIZE
             gridPane.minHeight = Region.USE_COMPUTED_SIZE
@@ -123,6 +126,18 @@ class Controller : Initializable, ISubscriber<Schedule> {
         val month = selectedDate.month.name
         val year = selectedDate.year
         label_date.text = "$day ${month.substring(0, 3)} $year"
+    }
+
+    override fun update(model: Schedule) {
+        selectedItemModel = model
+        refreshSelectedItem()
+    }
+
+    private fun refreshSelectedItem() {
+        textField_name.text = selectedItemModel!!.name
+        textField_startTime.text = if (selectedItemModel!!.startTime == null) "" else selectedItemModel!!.startTime.toString().substring(11)
+        textField_endTime.text = if (selectedItemModel!!.endTime == null) "" else selectedItemModel!!.endTime.toString().substring(11)
+        textField_duration.text = if (selectedItemModel!!.duration == null) "" else selectedItemModel!!.duration.toString()
     }
 
     private fun modelFromInput(
@@ -153,9 +168,5 @@ class Controller : Initializable, ISubscriber<Schedule> {
         val result = LocalDateTime.of(day.year, day.month.value, day.dayOfMonth, hourInt, minuteInt)
         println("Controller.timeTextToTime(input = $input) = $result")
         return result
-    }
-
-    override fun update(model: Schedule) {
-        TODO("Not yet implemented")
     }
 }

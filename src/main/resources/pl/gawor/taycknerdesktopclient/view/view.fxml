@@ -44,15 +44,15 @@
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
-                  <TextField fx:id="textField_startTime" alignment="CENTER" prefHeight="76.0" prefWidth="126.0" promptText="12:00">
+                  <TextField fx:id="textField_startTime" alignment="CENTER" prefHeight="76.0" prefWidth="126.0" promptText="00:00">
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
-               <TextField fx:id="textField_endTime" alignment="CENTER" prefHeight="75.0" prefWidth="132.0" promptText="12:00">
+               <TextField fx:id="textField_endTime" alignment="CENTER" prefHeight="75.0" prefWidth="132.0" promptText="00:00">
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
-                  <TextField fx:id="textField_duration" alignment="CENTER" prefHeight="76.0" prefWidth="136.0" promptText="1.5">
+                  <TextField fx:id="textField_duration" alignment="CENTER" prefHeight="76.0" prefWidth="136.0" promptText="0.0">
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
