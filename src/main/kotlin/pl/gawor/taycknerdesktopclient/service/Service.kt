@@ -9,6 +9,7 @@ open class Service<Model, Entity>(
 ) : ICrudService<Model> {
 
     override fun list(): List<Model>? {
+        println("Service.list()")
         val entities = repository.list()
         val models = ArrayList<Model>()
         if (entities != null) {
@@ -16,29 +17,43 @@ open class Service<Model, Entity>(
                 val model = mapper.entityToModel(entity)
                 models.add(model!!)
             }
+            println("Service.list() = models")
             return models
         }
+        println("Service.list() = null")
         return null
     }
 
     override fun create(model: Model): Model? {
+        println("Service.create(model = $model)")
         val entity = mapper.modelToEntity(model)
         val createdEntity = repository.create(entity)
-        return mapper.entityToModel(createdEntity)
+        val createdModel = mapper.entityToModel(createdEntity)
+        println("Service.create(model = $model) = $createdModel")
+        return createdModel
     }
 
     override fun read(id: Int): Model? {
+        println("Service.read(id = $id)")
         val readEntity = repository.read(id)
-        return mapper.entityToModel(readEntity)
+        val readModel = mapper.entityToModel(readEntity)
+        println("Service.read(id = $id) = $readModel")
+        return readModel
     }
 
     override fun update(id: Int, model: Model): Model? {
+        println("Service.update(id = $id, model = $model)")
         val entity = mapper.modelToEntity(model)
         val updatedEntity = repository.update(id, entity)
-        return mapper.entityToModel(updatedEntity)
+        val updateModel = mapper.entityToModel(updatedEntity)
+        println("Service.update(id = $id, model = $model) = $updateModel")
+        return updateModel
     }
 
     override fun delete(id: Int): Boolean {
-        return repository.delete(id)
+        println("Service.delete(id = $id)")
+        val result = repository.delete(id)
+        println("Service.delete(id = $id) = $result")
+        return result
     }
 }
