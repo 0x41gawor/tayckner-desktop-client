@@ -2,10 +2,12 @@ package pl.gawor.taycknerdesktopclient.controller
 
 import javafx.fxml.FXML
 import javafx.scene.control.Label
+import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Schedule
 import java.time.LocalDateTime
 import kotlin.math.floor
 
+//---// P U B L I S H E R
 class ItemScheduleController {
     @FXML private lateinit var label_duration: Label
 
@@ -53,6 +55,26 @@ class ItemScheduleController {
         var result = if (duration == floor(duration)) duration.toInt().toString() else duration.toString()
         result += "h"
         return result
+    }
+
+    //---// S U B S C R I B E R S
+    private val subscribers: ArrayList<ISubscriber<Schedule>> = ArrayList()
+
+    //---// S U B S C R I B E
+    fun subscribe(s: ISubscriber<Schedule>) {
+        subscribers.add(s)
+    }
+
+    //---// U N S U B S C R I B E
+    fun unsubscribe(s: ISubscriber<Schedule>) {
+        subscribers.remove(s)
+    }
+
+    //---// N O T I F Y  S U B S C R I B E R S
+    private fun notifySubscribers() {
+        for (s in subscribers) {
+            s.update(model)
+        }
     }
 
 }
