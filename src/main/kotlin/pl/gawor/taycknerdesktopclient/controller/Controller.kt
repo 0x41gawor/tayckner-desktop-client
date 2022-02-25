@@ -27,35 +27,25 @@ import kotlin.collections.ArrayList
 //---// S U B S C R I B E R
 class Controller : Initializable, ISubscriber<Schedule> {
 
-    @FXML
-    private lateinit var button_next: Button
+    @FXML private lateinit var button_next: Button
 
-    @FXML
-    private lateinit var label_date: Label
+    @FXML private lateinit var label_date: Label
 
-    @FXML
-    private lateinit var button_prev: Button
+    @FXML private lateinit var button_prev: Button
 
-    @FXML
-    private lateinit var gridPane: GridPane
+    @FXML private lateinit var gridPane: GridPane
 
-    @FXML
-    private lateinit var textField_name: TextField
+    @FXML private lateinit var textField_name: TextField
 
-    @FXML
-    private lateinit var textField_duration: TextField
+    @FXML private lateinit var textField_duration: TextField
 
-    @FXML
-    private lateinit var textField_endTime: TextField
+    @FXML private lateinit var textField_endTime: TextField
 
-    @FXML
-    private lateinit var textField_startTime: TextField
+    @FXML private lateinit var textField_startTime: TextField
 
-    @FXML
-    private lateinit var button_add: Button
+    @FXML private lateinit var button_add: Button
 
-    @FXML
-    private lateinit var button_delete: Button
+    @FXML private lateinit var button_delete: Button
 
     private var selectedDate = LocalDate.now()
 
@@ -74,22 +64,30 @@ class Controller : Initializable, ISubscriber<Schedule> {
         refreshList()
     }
 
-    @FXML
-    private fun button_nextOnMouseClicked() {
+    @FXML private fun button_nextOnMouseClicked() {
         setSelectedDate(DateDir.NEXT)
         refreshList()
     }
 
-    @FXML
-    private fun button_prevOnMouseClicked() {
+    @FXML private fun button_prevOnMouseClicked() {
         setSelectedDate(DateDir.PREV)
         refreshList()
     }
 
-    @FXML
-    private fun button_addOnMouseClicked() {
-        val model = modelFromInput(textField_name, textField_startTime, textField_endTime, textField_duration)
-        service.create(model)
+    @FXML private fun button_addOnMouseClicked() {
+        if (textField_name.text != "") {
+            val model = modelFromInput(textField_name, textField_startTime, textField_endTime, textField_duration)
+            service.create(model)
+            refreshList()
+        }
+    }
+
+    @FXML private fun button_deleteOnMouseClicked() {
+        if (selectedItemModel != null) {
+            service.delete(selectedItemModel!!.id)
+            selectedItemModel = null
+            refreshSelectedItem()
+        }
         refreshList()
     }
 
@@ -134,10 +132,17 @@ class Controller : Initializable, ISubscriber<Schedule> {
     }
 
     private fun refreshSelectedItem() {
-        textField_name.text = selectedItemModel!!.name
-        textField_startTime.text = if (selectedItemModel!!.startTime == null) "" else selectedItemModel!!.startTime.toString().substring(11)
-        textField_endTime.text = if (selectedItemModel!!.endTime == null) "" else selectedItemModel!!.endTime.toString().substring(11)
-        textField_duration.text = if (selectedItemModel!!.duration == null) "" else selectedItemModel!!.duration.toString()
+        if (selectedItemModel == null) {
+            textField_name.text = ""
+            textField_startTime.text = ""
+            textField_endTime.text = ""
+            textField_duration.text = ""
+        } else {
+            textField_name.text = selectedItemModel!!.name
+            textField_startTime.text = if (selectedItemModel!!.startTime == null) "" else selectedItemModel!!.startTime.toString().substring(11)
+            textField_endTime.text = if (selectedItemModel!!.endTime == null) "" else selectedItemModel!!.endTime.toString().substring(11)
+            textField_duration.text = if (selectedItemModel!!.duration == null) "" else selectedItemModel!!.duration.toString()
+        }
     }
 
     private fun modelFromInput(
