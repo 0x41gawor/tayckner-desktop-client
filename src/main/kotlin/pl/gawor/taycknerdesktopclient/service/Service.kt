@@ -17,7 +17,7 @@ open class Service<Model, Entity>(
                 val model = mapper.entityToModel(entity)
                 models.add(model!!)
             }
-            println("Service.list() = models")
+            println("Service.list() = $models")
             return models
         }
         println("Service.list() = null")
