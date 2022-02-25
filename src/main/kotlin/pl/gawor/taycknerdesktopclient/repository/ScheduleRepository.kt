@@ -31,14 +31,17 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
             val entity: ScheduleEntity?
             val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime()
             val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime()
+            var duration: Double? = resultSet.getDouble("duration")
+            if (resultSet.wasNull()) duration = null
             entity = ScheduleEntity(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
                 startTime,
                 endTime,
-                resultSet.getDouble("duration"),
+                duration,
                 resultSet.getInt("user_id")
             )
+            println(entity)
             return entity
         }
         return null
@@ -75,14 +78,17 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
                 // `.minusHours(1)` at the end is bcuz MySQL for some unknown reason was returning inflated (by one hour) timestamps in resultSet
                 val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime().minusHours(1)
                 val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime().minusHours(1)
+                var duration: Double? = resultSet.getDouble("duration")
+                if (resultSet.wasNull()) duration = null
                 entity = ScheduleEntity(
                     resultSet.getInt("id"),
                     resultSet.getString("name"),
                     startTime,
                     endTime,
-                    resultSet.getDouble("duration"),
+                    duration,
                     resultSet.getInt("user_id")
                 )
+                println(entity)
                 list.add(entity)
             }
             return list
