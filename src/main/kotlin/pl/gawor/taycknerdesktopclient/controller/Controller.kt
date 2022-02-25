@@ -132,7 +132,7 @@ class Controller : Initializable {
         val name = textfieldName.text
         val startTime = timeTextToTime(textfieldStartTime.text)
         val endTime = timeTextToTime(textfieldEndTime.text)
-        val duration = textfieldDuration.text.toDouble()
+        val duration = if (textfieldDuration.text == "") null else textfieldDuration.text.toDouble()
         return Schedule(0, name, startTime, endTime,duration, User())
     }
 
