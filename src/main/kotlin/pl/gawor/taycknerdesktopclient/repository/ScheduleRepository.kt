@@ -3,7 +3,6 @@ package pl.gawor.taycknerdesktopclient.repository
 import pl.gawor.taycknerdesktopclient.repository.dbhelper.DbHelper
 import pl.gawor.taycknerdesktopclient.repository.entity.ScheduleEntity
 import java.time.LocalDate
-import java.time.temporal.TemporalQuery
 
 class ScheduleRepository : ICrudRepository<ScheduleEntity> {
 
@@ -15,8 +14,11 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
     }
 
     override fun create(entity: ScheduleEntity): ScheduleEntity? {
+        val startTime = if (entity.startTime == null) "null" else "'${entity.startTime}'"
+        val endTime = if (entity.endTime == null) "null" else "'${entity.endTime}'"
+        val duration = if (entity.duration == null) "null" else "'${entity.duration}'"
         val query =
-            "insert into schedule value (0, '${entity.name}', '${entity.startTime}', '${entity.endTime}', ${entity.duration}, ${entity.userId})"
+            "insert into schedule value (0, '${entity.name}', $startTime, $endTime, $duration, ${entity.userId})"
         val id = dbHelper.executeInsertQuery(query)
 
         return read(id)
@@ -27,11 +29,13 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
         val resultSet = dbHelper.executeResultQuery(query)
         if (resultSet != null && resultSet.next()) {
             val entity: ScheduleEntity?
+            val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime()
+            val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime()
             entity = ScheduleEntity(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
-                resultSet.getTimestamp("start_time").toLocalDateTime(),
-                resultSet.getTimestamp("end_time").toLocalDateTime(),
+                startTime,
+                endTime,
                 resultSet.getDouble("duration"),
                 resultSet.getInt("user_id")
             )
@@ -41,8 +45,11 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
     }
 
     override fun update(id: Int, entity: ScheduleEntity): ScheduleEntity? {
+        val startTime = if (entity.startTime == null) "null" else "'${entity.startTime}'"
+        val endTime = if (entity.endTime == null) "null" else "'${entity.endTime}'"
+        val duration = if (entity.duration == null) "null" else "'${entity.duration}'"
         val query =
-            "update schedule set name = '${entity.name}', start_time = '${entity.startTime}', end_time = '${entity.endTime}', duration = ${entity.duration}, user_id = ${entity.userId} where id = $id;"
+            "update schedule set name = '${entity.name}', start_time = $startTime, end_time = '$endTime, duration = $duration, user_id = ${entity.userId} where id = $id;"
         dbHelper.executeUpdateQuery(query)
         return read(id)
     }
@@ -65,11 +72,13 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
         if (resultSet != null) {
             var entity: ScheduleEntity?
             while (resultSet.next()) {
+                val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime()
+                val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime()
                 entity = ScheduleEntity(
                     resultSet.getInt("id"),
                     resultSet.getString("name"),
-                    resultSet.getTimestamp("start_time").toLocalDateTime(),
-                    resultSet.getTimestamp("end_time").toLocalDateTime(),
+                    startTime,
+                    endTime,
                     resultSet.getDouble("duration"),
                     resultSet.getInt("user_id")
                 )
