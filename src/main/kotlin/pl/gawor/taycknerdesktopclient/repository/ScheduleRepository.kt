@@ -22,7 +22,7 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
         val endTime = if (entity.endTime == null) "null" else "'${entity.endTime}'"
         val duration = if (entity.duration == null) "null" else "'${entity.duration}'"
         val query =
-            "insert into schedule value (0, '${entity.name}', $startTime, $endTime, $duration, ${entity.userId})"
+            "insert into schedule value (0, '${entity.name}', $startTime, $endTime, '${entity.date}', $duration, ${entity.userId})"
         val id = dbHelper.executeInsertQuery(query)
         val result = read(id)
         println("ScheduleRepository.create(entity = $entity) = $result")
@@ -36,8 +36,8 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
         val result: ScheduleEntity?
         if (resultSet != null && resultSet.next()) {
             val entity: ScheduleEntity?
-            val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime()
-            val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime()
+            val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime().toLocalTime()
+            val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime().toLocalTime()
             var duration: Double? = resultSet.getDouble("duration")
             if (resultSet.wasNull()) duration = null
             entity = ScheduleEntity(
@@ -45,13 +45,14 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
                 resultSet.getString("name"),
                 startTime,
                 endTime,
+                resultSet.getDate("date").toLocalDate(),
                 duration,
                 resultSet.getInt("user_id")
             )
             result = entity
         } else result = null
         println("ScheduleRepository.read(id = $id) = $result")
-        return null
+        return result
     }
 
     override fun update(id: Int, entity: ScheduleEntity): ScheduleEntity? {
@@ -77,7 +78,7 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
 
     fun list(date: LocalDate): List<ScheduleEntity>? {
         println("ScheduleRepository.list(date = $date)")
-        val query = "select * from schedule where start_time like '%$date%' OR end_time like '%$date%'"
+        val query = "select * from schedule where date like '%$date%'"
         val result = listQuery(query)
         println("ScheduleRepository.list(date = $date) = $result")
         return result
@@ -91,8 +92,8 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
             var entity: ScheduleEntity?
             while (resultSet.next()) {
                 // `.minusHours(1)` at the end is bcuz MySQL for some unknown reason was returning inflated (by one hour) timestamps in resultSet
-                val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime().minusHours(1)
-                val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime().minusHours(1)
+                val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime().minusHours(1).toLocalTime()
+                val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime().minusHours(1).toLocalTime()
                 var duration: Double? = resultSet.getDouble("duration")
                 if (resultSet.wasNull()) duration = null
                 entity = ScheduleEntity(
@@ -100,6 +101,7 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
                     resultSet.getString("name"),
                     startTime,
                     endTime,
+                    resultSet.getDate("date").toLocalDate(),
                     duration,
                     resultSet.getInt("user_id")
                 )

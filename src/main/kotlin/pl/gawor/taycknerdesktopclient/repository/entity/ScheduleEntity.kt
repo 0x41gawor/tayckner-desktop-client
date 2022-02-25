@@ -12,5 +12,5 @@ data class ScheduleEntity(
     val duration: Double?,
     val userId: Int
 ) {
-    constructor() : this(0, "", LocalTime.MIN, LocalTime.MIN, LocalDate.now(), 0.0, 1)
+    constructor() : this(0, "", LocalTime.now(), LocalTime.now(), LocalDate.now(), 0.0, 1)
 }
