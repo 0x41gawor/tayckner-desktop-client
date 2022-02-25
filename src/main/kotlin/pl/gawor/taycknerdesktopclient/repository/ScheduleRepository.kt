@@ -33,7 +33,7 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
         println("ScheduleRepository.read(id = $id)")
         val query = "select * from schedule where id = $id"
         val resultSet = dbHelper.executeResultQuery(query)
-        var result: ScheduleEntity?
+        val result: ScheduleEntity?
         if (resultSet != null && resultSet.next()) {
             val entity: ScheduleEntity?
             val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime()
@@ -49,8 +49,7 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
                 resultSet.getInt("user_id")
             )
             result = entity
-        }
-        result = null
+        } else result = null
         println("ScheduleRepository.read(id = $id) = $result")
         return null
     }
@@ -104,7 +103,6 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
                     duration,
                     resultSet.getInt("user_id")
                 )
-                println(entity)
                 list.add(entity)
             }
             return list
