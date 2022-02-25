@@ -139,20 +139,17 @@ class Controller : Initializable {
     private fun timeTextToTime(input: String): LocalDateTime? {
         println("Controller.timeTextToTime(input = $input)")
         if (input == "") return null
-        val time = input
         val regex1 = Regex("\\d\\d[:]\\d\\d")
-        if (!(regex1.matches(time))) return null
-        val hour = time.substring(0, 2)
-        val minute = time.substring(3, 5)
+        if (!(regex1.matches(input))) return null
+        val hour = input.substring(0, 2)
+        val minute = input.substring(3, 5)
         println(hour)
         println(minute)
         val hourInt = hour.toInt()
         val minuteInt = minute.toInt()
-        val today = LocalDate.now()
-        val result = LocalDateTime.of(today.year, today.month.value, today.dayOfMonth, hourInt, minuteInt)
+        val day = selectedDate
+        val result = LocalDateTime.of(day.year, day.month.value, day.dayOfMonth, hourInt, minuteInt)
         println("Controller.timeTextToTime(input = $input) = $result")
         return result
     }
-
-
 }
