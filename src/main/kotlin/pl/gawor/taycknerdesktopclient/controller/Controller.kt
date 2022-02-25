@@ -76,7 +76,7 @@ class Controller : Initializable, ISubscriber<Schedule> {
 
     @FXML private fun button_addOnMouseClicked() {
         if (textField_name.text != "") {
-            val model = modelFromInput(textField_name, textField_startTime, textField_endTime, textField_duration)
+            val model = modelFromInput(0, textField_name, textField_startTime, textField_endTime, textField_duration)
             service.create(model)
             refreshList()
         }
@@ -146,6 +146,7 @@ class Controller : Initializable, ISubscriber<Schedule> {
     }
 
     private fun modelFromInput(
+        id: Int,
         textfieldName: TextField,
         textfieldStartTime: TextField,
         textfieldEndTime: TextField,
@@ -173,5 +174,13 @@ class Controller : Initializable, ISubscriber<Schedule> {
         val result = LocalDateTime.of(day.year, day.month.value, day.dayOfMonth, hourInt, minuteInt)
         println("Controller.timeTextToTime(input = $input) = $result")
         return result
+    }
+
+    fun hbox_crud_inputsOnAction() {
+        if (selectedItemModel != null) {
+            val model = modelFromInput(selectedItemModel!!.id, textField_name, textField_startTime, textField_endTime, textField_duration)
+            service.update(selectedItemModel!!.id, model)
+            refreshList()
+        }
     }
 }
