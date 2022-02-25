@@ -24,6 +24,10 @@ class ItemScheduleController {
         label_duration.text = getDurationText(model.duration)
     }
 
+    @FXML private fun hboxOnMouseClicked() {
+        notifySubscribers()
+    }
+
     private fun getTimeText(start: LocalDateTime?, end: LocalDateTime?): String {
         val startTime = if (start == null) "" else {
             var hour = start.hour.toString()
