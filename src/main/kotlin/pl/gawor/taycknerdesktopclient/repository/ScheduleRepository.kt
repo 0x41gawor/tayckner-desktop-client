@@ -91,9 +91,8 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
         if (resultSet != null) {
             var entity: ScheduleEntity?
             while (resultSet.next()) {
-                // `.minusHours(1)` at the end is bcuz MySQL for some unknown reason was returning inflated (by one hour) timestamps in resultSet
-                val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime().minusHours(1).toLocalTime()
-                val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime().minusHours(1).toLocalTime()
+                val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime().toLocalTime()
+                val endTime = if (resultSet.getTimestamp("end_time") == null) null else resultSet.getTimestamp("end_time").toLocalDateTime().toLocalTime()
                 var duration: Double? = resultSet.getDouble("duration")
                 if (resultSet.wasNull()) duration = null
                 entity = ScheduleEntity(
