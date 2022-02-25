@@ -60,7 +60,7 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
         val endTime = if (entity.endTime == null) "null" else "'${entity.endTime}'"
         val duration = if (entity.duration == null) "null" else "'${entity.duration}'"
         val query =
-            "update schedule set name = '${entity.name}', start_time = $startTime, end_time = '$endTime, duration = $duration, user_id = ${entity.userId} where id = $id;"
+            "update schedule set name = '${entity.name}', start_time = $startTime, end_time = $endTime, duration = $duration, user_id = ${entity.userId} where id = $id;"
         dbHelper.executeUpdateQuery(query)
         val result = read(id)
         println("ScheduleRepository.update(id = $id, entity = $entity) = $result")
