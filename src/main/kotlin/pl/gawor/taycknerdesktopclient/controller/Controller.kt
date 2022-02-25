@@ -156,7 +156,7 @@ class Controller : Initializable, ISubscriber<Schedule> {
         val startTime = timeTextToTime(textfieldStartTime.text)
         val endTime = timeTextToTime(textfieldEndTime.text)
         val duration = if (textfieldDuration.text == "") null else textfieldDuration.text.toDouble()
-        return Schedule(0, name, startTime, endTime,duration, User())
+        return Schedule(id, name, startTime, endTime,duration, User())
     }
 
     private fun timeTextToTime(input: String): LocalDateTime? {
@@ -182,5 +182,10 @@ class Controller : Initializable, ISubscriber<Schedule> {
             service.update(selectedItemModel!!.id, model)
             refreshList()
         }
+    }
+
+    fun label_dateOnMouseClicked() {
+        setSelectedDate(DateDir.TODAY)
+        refreshList()
     }
 }
