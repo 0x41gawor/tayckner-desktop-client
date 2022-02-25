@@ -22,13 +22,34 @@ class ItemScheduleController {
         label_duration.text = getDurationText(model.duration)
     }
 
-    private fun getTimeText(start: LocalDateTime, end: LocalDateTime): String {
-        val startTime =start.hour.toString() + ":" + model.startTime.minute
-        val endTime = end.hour.toString() + ":" + model.endTime.minute
+    private fun getTimeText(start: LocalDateTime?, end: LocalDateTime?): String {
+        val startTime = if (start == null) "" else {
+            var hour = start.hour.toString()
+            if (start.hour < 10) {
+                hour = "0$hour"
+            }
+            var minute = start.minute.toString()
+            if (start.minute < 10) {
+                minute = "0$minute"
+            }
+            "$hour:$minute"
+        }
+        val endTime = if (end == null) "" else {
+            var hour = end.hour.toString()
+            if (end.hour < 10) {
+                hour = "0$hour"
+            }
+            var minute = end.minute.toString()
+            if (end.minute < 10) {
+                minute = "0$minute"
+            }
+            "$hour:$minute"
+        }
         return "$startTime - $endTime"
     }
 
-    private fun getDurationText(duration: Double): String {
+    private fun getDurationText(duration: Double?): String {
+        if (duration == null) return ""
         var result = if (duration == floor(duration)) duration.toInt().toString() else duration.toString()
         result += "h"
         return result

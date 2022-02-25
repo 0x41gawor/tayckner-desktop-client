@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.Controller">
     <BorderPane prefHeight="1013.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <top>
             <HBox fx:id="hbox_top" alignment="CENTER" prefHeight="71.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
@@ -41,7 +33,7 @@
         </top>
       <bottom>
           <HBox fx:id="hbox_bottom" alignment="CENTER" prefHeight="137.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
-              <Button fx:id="button_add" mnemonicParsing="false" prefHeight="63.0" prefWidth="52.0">
+              <Button fx:id="button_add" mnemonicParsing="false" onMouseClicked="#button_addOnMouseClicked" prefHeight="63.0" prefWidth="52.0">
                <graphic>
                    <ImageView fitHeight="68.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
                        <Image url="@img/add.png" />
@@ -60,7 +52,7 @@
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
-                  <TextField fx:id="textField_duration" alignment="CENTER" prefHeight="76.0" prefWidth="136.0" text="1.5h">
+                  <TextField fx:id="textField_duration" alignment="CENTER" prefHeight="76.0" prefWidth="136.0" text="1.5">
                   <font>
                      <Font size="24.0" />
                   </font></TextField>

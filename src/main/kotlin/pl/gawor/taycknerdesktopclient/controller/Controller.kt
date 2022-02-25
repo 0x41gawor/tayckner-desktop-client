@@ -13,42 +13,53 @@ import javafx.scene.layout.Region
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.util.DateDir
 import pl.gawor.taycknerdesktopclient.model.Schedule
+import pl.gawor.taycknerdesktopclient.model.User
 import pl.gawor.taycknerdesktopclient.repository.ScheduleRepository
 import pl.gawor.taycknerdesktopclient.service.ScheduleService
 import pl.gawor.taycknerdesktopclient.service.mapper.ScheduleMapper
 import java.net.URL
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
 class Controller : Initializable {
 
-    @FXML private lateinit var button_next: Button
+    @FXML
+    private lateinit var button_next: Button
 
-    @FXML private lateinit var label_date: Label
+    @FXML
+    private lateinit var label_date: Label
 
-    @FXML private lateinit var button_prev: Button
+    @FXML
+    private lateinit var button_prev: Button
 
-    @FXML private lateinit var gridPane: GridPane
+    @FXML
+    private lateinit var gridPane: GridPane
 
-    @FXML private lateinit var textField_name: TextField
+    @FXML
+    private lateinit var textField_name: TextField
 
-    @FXML private lateinit var textField_duration: TextField
+    @FXML
+    private lateinit var textField_duration: TextField
 
-    @FXML private lateinit var textField_endTime: TextField
+    @FXML
+    private lateinit var textField_endTime: TextField
 
-    @FXML private lateinit var textField_startTime: TextField
+    @FXML
+    private lateinit var textField_startTime: TextField
 
-    @FXML private lateinit var button_add: Button
+    @FXML
+    private lateinit var button_add: Button
 
-    @FXML private lateinit var button_delete: Button
+    @FXML
+    private lateinit var button_delete: Button
 
     private var selectedDate = LocalDate.now()
 
     private var models = ArrayList<Schedule>()
 
     private lateinit var service: ScheduleService
-
 
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         val repository = ScheduleRepository()
@@ -59,13 +70,22 @@ class Controller : Initializable {
         refreshList()
     }
 
-    @FXML private fun button_nextOnMouseClicked() {
+    @FXML
+    private fun button_nextOnMouseClicked() {
         setSelectedDate(DateDir.NEXT)
         refreshList()
     }
 
-    @FXML private fun button_prevOnMouseClicked() {
+    @FXML
+    private fun button_prevOnMouseClicked() {
         setSelectedDate(DateDir.PREV)
+        refreshList()
+    }
+
+    @FXML
+    private fun button_addOnMouseClicked() {
+        val model = modelFromInput(textField_name, textField_startTime, textField_endTime, textField_duration)
+        service.create(model)
         refreshList()
     }
 
@@ -101,6 +121,37 @@ class Controller : Initializable {
         val month = selectedDate.month.name
         val year = selectedDate.year
         label_date.text = "$day ${month.substring(0, 3)} $year"
+    }
+
+    private fun modelFromInput(
+        textfieldName: TextField,
+        textfieldStartTime: TextField,
+        textfieldEndTime: TextField,
+        textfieldDuration: TextField
+    ): Schedule {
+        val name = textfieldName.text
+        val startTime = timeTextToTime(textfieldStartTime.text)
+        val endTime = timeTextToTime(textfieldEndTime.text)
+        val duration = textfieldDuration.text.toDouble()
+        return Schedule(0, name, startTime, endTime,duration, User())
+    }
+
+    private fun timeTextToTime(input: String): LocalDateTime? {
+        println("Controller.timeTextToTime(input = $input)")
+        if (input == "") return null
+        val time = input
+        val regex1 = Regex("\\d\\d[:]\\d\\d")
+        if (!(regex1.matches(time))) return null
+        val hour = time.substring(0, 2)
+        val minute = time.substring(3, 5)
+        println(hour)
+        println(minute)
+        val hourInt = hour.toInt()
+        val minuteInt = minute.toInt()
+        val today = LocalDate.now()
+        val result = LocalDateTime.of(today.year, today.month.value, today.dayOfMonth, hourInt, minuteInt)
+        println("Controller.timeTextToTime(input = $input) = $result")
+        return result
     }
 
 
