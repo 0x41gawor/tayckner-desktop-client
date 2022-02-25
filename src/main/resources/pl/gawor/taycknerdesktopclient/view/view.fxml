@@ -6,24 +6,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0"
-            prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2"  xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.Controller">
     <BorderPane prefHeight="1013.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <top>
-            <HBox fx:id="hbox_top" alignment="CENTER" prefHeight="71.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
-                <Button fx:id="button_prev" mnemonicParsing="false" prefHeight="38.0" prefWidth="50.0">
+            <HBox  alignment="CENTER" prefHeight="71.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+                <Button fx:id="button_prev" mnemonicParsing="false" onMouseClicked="#button_prevOnMouseClicked" prefHeight="38.0" prefWidth="50.0">
                     <graphic>
                         <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@img/day-prev.png" />
                         </ImageView>
                     </graphic>
                 </Button>
-                <Label fx:id="label_date" alignment="CENTER" prefHeight="70.0" prefWidth="333.0" text="24 feb 2022">
+                <Label fx:id="label_date" alignment="CENTER" onMouseClicked="#label_dateOnMouseClicked" prefHeight="70.0" prefWidth="333.0" text="24 feb 2022">
                     <font>
                         <Font size="48.0" />
                     </font>
                 </Label>
-                <Button fx:id="button_next" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="50.0">
+                <Button fx:id="button_next" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#button_nextOnMouseClicked" prefHeight="38.0" prefWidth="50.0">
                     <graphic>
                         <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@img/day-next.png" />
@@ -33,27 +32,27 @@
             </HBox>
         </top>
       <bottom>
-          <HBox fx:id="hbox_bottom" alignment="CENTER" prefHeight="137.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
-              <Button fx:id="button_add" mnemonicParsing="false" prefHeight="63.0" prefWidth="52.0">
+          <HBox  alignment="CENTER" prefHeight="137.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+              <Button fx:id="button_add" mnemonicParsing="false" onMouseClicked="#button_addOnMouseClicked" prefHeight="63.0" prefWidth="52.0">
                <graphic>
                    <ImageView fitHeight="68.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
                        <Image url="@img/add.png" />
                    </ImageView>
                </graphic></Button>
-              <HBox fx:id="hbox_crud" alignment="CENTER" prefHeight="147.0" prefWidth="860.0">
-                  <TextField fx:id="textField_name" prefHeight="76.0" prefWidth="456.0" text="Spacer">
+              <HBox  alignment="CENTER" prefHeight="147.0" prefWidth="860.0">
+                  <TextField fx:id="textField_name" onAction="#hbox_crud_inputsOnAction" prefHeight="76.0" prefWidth="456.0" promptText="Planned activity name">
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
-                  <TextField fx:id="textField_startTime" alignment="CENTER" prefHeight="76.0" prefWidth="126.0" text="12:00">
+                  <TextField fx:id="textField_startTime" alignment="CENTER" onAction="#hbox_crud_inputsOnAction" prefHeight="76.0" prefWidth="126.0" promptText="00:00">
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
-               <TextField fx:id="textField_endTime" alignment="CENTER" prefHeight="75.0" prefWidth="132.0" text="13:30">
+               <TextField fx:id="textField_endTime" alignment="CENTER" onAction="#hbox_crud_inputsOnAction" prefHeight="75.0" prefWidth="132.0" promptText="00:00">
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
-                  <TextField fx:id="textField_duration" alignment="CENTER" prefHeight="76.0" prefWidth="136.0" text="1.5h">
+                  <TextField fx:id="textField_duration" alignment="CENTER" onAction="#hbox_crud_inputsOnAction" prefHeight="76.0" prefWidth="136.0" promptText="0.0">
                   <font>
                      <Font size="24.0" />
                   </font></TextField>
@@ -61,7 +60,7 @@
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </padding>
               </HBox>
-              <Button fx:id="button_delete" mnemonicParsing="false" prefHeight="75.0" prefWidth="61.0">
+              <Button fx:id="button_delete" mnemonicParsing="false" onMouseClicked="#button_deleteOnMouseClicked" prefHeight="75.0" prefWidth="61.0">
                <graphic>
                    <ImageView fitHeight="76.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                        <Image url="@img/delete.png" />
@@ -70,12 +69,15 @@
           </HBox>
       </bottom>
       <center>
-          <HBox fx:id="hbox_center" alignment="CENTER" prefHeight="764.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
-              <ScrollPane fx:id="scroll_pane" prefHeight="764" prefWidth="1040">
-                  <GridPane fx:id="gridPane" prefHeight="764.0" prefWidth="1000">
+          <HBox alignment="CENTER" prefHeight="764.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
+              <ScrollPane  prefHeight="764" prefWidth="1040">
+                  <GridPane fx:id="gridPane" alignment="CENTER" prefHeight="764.0" prefWidth="1000">
                       <rowConstraints>
                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       </rowConstraints>
+                      <padding>
+                          <Insets top="10.0" />
+                      </padding>
                   </GridPane>
               </ScrollPane>
           </HBox>
