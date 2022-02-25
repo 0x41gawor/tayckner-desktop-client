@@ -9,24 +9,31 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
     private val dbHelper = DbHelper()
 
     override fun list(): List<ScheduleEntity>? {
+        println("ScheduleRepository.list()")
         val query = "select * from schedule"
-       return listQuery(query)
+        val result = listQuery(query)
+        println("ScheduleRepository.list() = $result")
+        return result
     }
 
     override fun create(entity: ScheduleEntity): ScheduleEntity? {
+        println("ScheduleRepository.create(entity = $entity)")
         val startTime = if (entity.startTime == null) "null" else "'${entity.startTime}'"
         val endTime = if (entity.endTime == null) "null" else "'${entity.endTime}'"
         val duration = if (entity.duration == null) "null" else "'${entity.duration}'"
         val query =
             "insert into schedule value (0, '${entity.name}', $startTime, $endTime, $duration, ${entity.userId})"
         val id = dbHelper.executeInsertQuery(query)
-
-        return read(id)
+        val result = read(id)
+        println("ScheduleRepository.create(entity = $entity) = $result")
+        return result
     }
 
     override fun read(id: Int): ScheduleEntity? {
+        println("ScheduleRepository.read(id = $id)")
         val query = "select * from schedule where id = $id"
         val resultSet = dbHelper.executeResultQuery(query)
+        var result: ScheduleEntity?
         if (resultSet != null && resultSet.next()) {
             val entity: ScheduleEntity?
             val startTime = if (resultSet.getTimestamp("start_time") == null) null else resultSet.getTimestamp("start_time").toLocalDateTime()
@@ -41,31 +48,40 @@ class ScheduleRepository : ICrudRepository<ScheduleEntity> {
                 duration,
                 resultSet.getInt("user_id")
             )
-            println(entity)
-            return entity
+            result = entity
         }
+        result = null
+        println("ScheduleRepository.read(id = $id) = $result")
         return null
     }
 
     override fun update(id: Int, entity: ScheduleEntity): ScheduleEntity? {
+        println("ScheduleRepository.update(id = $id, entity = $entity)")
         val startTime = if (entity.startTime == null) "null" else "'${entity.startTime}'"
         val endTime = if (entity.endTime == null) "null" else "'${entity.endTime}'"
         val duration = if (entity.duration == null) "null" else "'${entity.duration}'"
         val query =
             "update schedule set name = '${entity.name}', start_time = $startTime, end_time = '$endTime, duration = $duration, user_id = ${entity.userId} where id = $id;"
         dbHelper.executeUpdateQuery(query)
-        return read(id)
+        val result = read(id)
+        println("ScheduleRepository.update(id = $id, entity = $entity) = $result")
+        return result
     }
 
     override fun delete(id: Int): Boolean {
+        println("ScheduleRepository.delete(id = $id)")
         val query = "delete from schedule where id = $id"
         dbHelper.executeUpdateQuery(query)
+        println("ScheduleRepository.delete(id = $id) = true")
         return true
     }
 
     fun list(date: LocalDate): List<ScheduleEntity>? {
+        println("ScheduleRepository.list(date = $date)")
         val query = "select * from schedule where start_time like '%$date%' OR end_time like '%$date%'"
-        return listQuery(query)
+        val result = listQuery(query)
+        println("ScheduleRepository.list(date = $date) = $result")
+        return result
     }
 
     private fun listQuery(query: String) : List<ScheduleEntity>? {
