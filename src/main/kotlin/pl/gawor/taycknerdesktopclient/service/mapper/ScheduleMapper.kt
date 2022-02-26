@@ -16,7 +16,7 @@ class ScheduleMapper : IMapper<Schedule, ScheduleEntity> {
 
     override fun modelToEntity(model: Schedule?): ScheduleEntity {
         println("ScheduleMapper.modelToEntity(model = $model)")
-        val result: ScheduleEntity = if (model == null) ScheduleEntity() else ScheduleEntity(model.id, model.name, model.startTime, model.endTime, model.duration, model.user.id)
+        val result: ScheduleEntity = if (model == null) ScheduleEntity() else ScheduleEntity(model.id, model.name, model.startTime, model.endTime,model.date, model.duration, model.user.id)
         println("ScheduleMapper.modelToEntity(model = $model) = $result")
         return result
     }
@@ -28,7 +28,7 @@ class ScheduleMapper : IMapper<Schedule, ScheduleEntity> {
             if (user == null) {
                 user = User()
             }
-            Schedule(entity.id, entity.name, entity.startTime, entity.endTime, entity.duration, user)
+            Schedule(entity.id, entity.name, entity.startTime, entity.endTime, entity.date, entity.duration, user)
         }
         println("ScheduleMapper.entityToModel(model = $entity) = $result")
         return result
