@@ -21,6 +21,7 @@ import pl.gawor.taycknerdesktopclient.service.mapper.ScheduleMapper
 import java.net.URL
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -79,6 +80,8 @@ class Controller : Initializable, ISubscriber<Schedule> {
             val model = modelFromInput(0, textField_name, textField_startTime, textField_endTime, textField_duration)
             service.create(model)
             refreshList()
+            selectedItemModel = null
+            refreshSelectedItem()
         }
     }
 
@@ -139,8 +142,8 @@ class Controller : Initializable, ISubscriber<Schedule> {
             textField_duration.text = ""
         } else {
             textField_name.text = selectedItemModel!!.name
-            textField_startTime.text = if (selectedItemModel!!.startTime == null) "" else selectedItemModel!!.startTime.toString().substring(11)
-            textField_endTime.text = if (selectedItemModel!!.endTime == null) "" else selectedItemModel!!.endTime.toString().substring(11)
+            textField_startTime.text = if (selectedItemModel!!.startTime == null) "" else selectedItemModel!!.startTime.toString().substring(0, 5)
+            textField_endTime.text = if (selectedItemModel!!.endTime == null) "" else selectedItemModel!!.endTime.toString().substring(0, 5)
             textField_duration.text = if (selectedItemModel!!.duration == null) "" else selectedItemModel!!.duration.toString()
         }
     }
@@ -156,10 +159,10 @@ class Controller : Initializable, ISubscriber<Schedule> {
         val startTime = timeTextToTime(textfieldStartTime.text)
         val endTime = timeTextToTime(textfieldEndTime.text)
         val duration = if (textfieldDuration.text == "") null else textfieldDuration.text.toDouble()
-        return Schedule(id, name, startTime, endTime,duration, User())
+        return Schedule(id, name, startTime, endTime, selectedDate, duration, User())
     }
 
-    private fun timeTextToTime(input: String): LocalDateTime? {
+    private fun timeTextToTime(input: String): LocalTime? {
         println("Controller.timeTextToTime(input = $input)")
         if (input == "") return null
         val regex1 = Regex("\\d\\d[:]\\d\\d")
@@ -170,8 +173,7 @@ class Controller : Initializable, ISubscriber<Schedule> {
         println(minute)
         val hourInt = hour.toInt()
         val minuteInt = minute.toInt()
-        val day = selectedDate
-        val result = LocalDateTime.of(day.year, day.month.value, day.dayOfMonth, hourInt, minuteInt)
+        val result = LocalTime.of(hourInt, minuteInt)
         println("Controller.timeTextToTime(input = $input) = $result")
         return result
     }

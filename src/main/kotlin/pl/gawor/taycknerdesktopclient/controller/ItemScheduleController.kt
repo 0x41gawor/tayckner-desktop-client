@@ -4,7 +4,7 @@ import javafx.fxml.FXML
 import javafx.scene.control.Label
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Schedule
-import java.time.LocalDateTime
+import java.time.LocalTime
 import kotlin.math.floor
 
 //---// P U B L I S H E R
@@ -28,29 +28,22 @@ class ItemScheduleController {
         notifySubscribers()
     }
 
-    private fun getTimeText(start: LocalDateTime?, end: LocalDateTime?): String {
-        val startTime = if (start == null) "" else {
-            var hour = start.hour.toString()
-            if (start.hour < 10) {
+    private fun getTimeText(start: LocalTime?, end: LocalTime?): String {
+        fun localTimeToString(time: LocalTime?) : String = if (time == null) "" else {
+            var hour = time.hour.toString()
+            if (time.hour < 10) {
                 hour = "0$hour"
             }
-            var minute = start.minute.toString()
-            if (start.minute < 10) {
+            var minute = time.minute.toString()
+            if (time.minute < 10) {
                 minute = "0$minute"
             }
             "$hour:$minute"
         }
-        val endTime = if (end == null) "" else {
-            var hour = end.hour.toString()
-            if (end.hour < 10) {
-                hour = "0$hour"
-            }
-            var minute = end.minute.toString()
-            if (end.minute < 10) {
-                minute = "0$minute"
-            }
-            "$hour:$minute"
-        }
+
+        val startTime = localTimeToString(start)
+        val endTime = localTimeToString(end)
+
         return "$startTime - $endTime"
     }
 
