@@ -40,7 +40,7 @@ class CategoryRepository : ICrudRepository<CategoryEntity> {
         val id = dbHelper.executeInsertQuery(query)
         val result = read(id)
         println("CategoryRepository.create(entity = $entity) = $result")
-        return null
+        return result
     }
 
     override fun read(id: Int): CategoryEntity? {
