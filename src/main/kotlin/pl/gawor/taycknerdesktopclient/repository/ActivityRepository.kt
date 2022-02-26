@@ -2,6 +2,7 @@ package pl.gawor.taycknerdesktopclient.repository
 
 import pl.gawor.taycknerdesktopclient.repository.dbhelper.DbHelper
 import pl.gawor.taycknerdesktopclient.repository.entity.ActivityEntity
+import java.time.LocalDate
 
 class ActivityRepository : ICrudRepository<ActivityEntity> {
 
@@ -65,6 +66,14 @@ class ActivityRepository : ICrudRepository<ActivityEntity> {
         dbHelper.executeUpdateQuery(query)
         println("ActivityRepository.delete(id = $id) = true")
         return true
+    }
+
+    fun list(date: LocalDate): List<ActivityEntity>? {
+        println("ActivityRepository.list(date = $date)")
+        val query = "select * from activity where date like '%$date%'"
+        val result = listQuery(query)
+        println("ActivityRepository.list(date = $date) = $result\"")
+        return result
     }
 
     private fun listQuery(query: String): List<ActivityEntity>? {
