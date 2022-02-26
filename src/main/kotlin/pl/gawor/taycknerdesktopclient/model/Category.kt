@@ -7,5 +7,5 @@ data class Category(
     val color: String,
     val user: User
 ) {
-    constructor() : this(0, "", "", "#ffffff", User())
+    constructor() : this(1, "", "", "#ffffff", User())
 }
