@@ -1,7 +1,9 @@
 CREATE DATABASE IF NOT EXISTS `tayckner_desktop_db`;
 USE `tayckner_desktop_db`;
 
+DROP TABLE IF EXISTS `activity`;
 DROP TABLE IF EXISTS `schedule`;
+DROP TABLE IF EXISTS `category`;
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
@@ -31,6 +33,26 @@ REFERENCES `user` (`id`)
 
 on delete no action on update no action
 ) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8, COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `activity` (
+`id` int NOT NULL auto_increment,
+`name` varchar(45) NOT NULL,
+`start_time` time NOT NULL,
+`end_time` time,
+`date` date NOT NULL,
+`duration` int NOT NULL,
+`breaks` int default 0 NOT NULL,
+`category_id` int NOT NULL,
+
+primary key (`id`),
+
+KEY `FK_category_idx` (`category_id`),
+CONSTRAINT `FK_category`
+FOREIGN KEY (`category_id`)
+REFERENCES `category` (`id`)
+
+on delete no action on update no action
+) engine=InnoDB AUTO_INCREMENT=1 CHARSET=utf8, COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `schedule` (
 `id` int NOT NULL auto_increment,
@@ -62,7 +84,9 @@ INSERT INTO `schedule` VALUES
 USE `tayckner_desktop_db`;
 select * from `user`;
 select * from `schedule`;
-
+select * from `category`;
+select * from `activity`;
+
 
 	
 update user set username = '', password = '', first_name = '', last_name = '', email = '' where id = 3;
