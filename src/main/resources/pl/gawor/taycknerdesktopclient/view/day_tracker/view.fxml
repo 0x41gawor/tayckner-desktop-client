@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.DayTrackerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.DayTrackerController">
    <HBox prefHeight="1013.0" prefWidth="1920.0">
       <VBox alignment="TOP_CENTER" prefHeight="1013.0" prefWidth="100.0">
          <padding>
@@ -31,7 +21,7 @@
             </font>
          </Label>
          <ScrollPane prefHeight="839.0" prefWidth="380.0">
-            <GridPane alignment="CENTER" prefHeight="839.0" prefWidth="360">
+            <GridPane fx:id="gridPane_category" alignment="CENTER" prefHeight="839.0" prefWidth="360">
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
@@ -41,10 +31,10 @@
             </GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="131.0" prefWidth="380.0">
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_categoyAdd" mnemonicParsing="false" onAction="#button_category_addOnAction" prefHeight="50.0" prefWidth="50.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../img/add.png"/>
+                     <Image url="@../img/add.png" />
                   </ImageView>
                </graphic></Button>
             <VBox prefHeight="124.0" prefWidth="277.0">
@@ -52,27 +42,27 @@
                   <VBox.margin>
                      <Insets left="5.0" right="5.0" />
                   </VBox.margin>
-                  <TextField prefHeight="25.0" prefWidth="199.0" promptText="Category Name">
+                  <TextField fx:id="textField_categoryName" onAction="#hbox_category_crud_inputsOnAction" prefHeight="25.0" prefWidth="199.0" promptText="Category Name">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <TextField promptText="#ffffff">
+                  <TextField fx:id="textField_categoryColor" onAction="#hbox_category_crud_inputsOnAction" promptText="#ffffff">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
                   </TextField>
                </HBox>
-               <TextArea prefHeight="112.0" prefWidth="257.0" promptText="Category description">
+               <TextArea fx:id="textArea_categoryDescription" prefHeight="112.0" prefWidth="257.0" promptText="Category description">
                   <VBox.margin>
                      <Insets bottom="10.0" left="5.0" right="5.0" />
                   </VBox.margin>
                </TextArea>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_categoryDelete" mnemonicParsing="false" onAction="#button_category_deleteOnAction" prefHeight="50.0" prefWidth="50.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../img/delete.png"/>
+                     <Image url="@../img/delete.png" />
                   </ImageView>
                </graphic></Button>
             <padding>
@@ -155,7 +145,7 @@
          </HBox>
       </VBox>
       <VBox alignment="CENTER" prefHeight="1013.0" prefWidth="482.0">
-         <Label text="Weeks stats will be here soon!"/>
+         <Label text="Weeks stats will be here soon!" />
       </VBox>
    </HBox>
 </AnchorPane>
