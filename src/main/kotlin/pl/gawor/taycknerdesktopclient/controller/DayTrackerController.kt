@@ -106,5 +106,13 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
         }
     }
 
+    fun hbox_category_crud_inputsOnAction() {
+        if (selectedItemCategory != null) {
+            val model = Category(selectedItemCategory!!.id, textField_categoryName.text, textArea_categoryDescription.text, textField_categoryColor.text, User())
+            categoryService.update(model.id, model)
+            refreshCategoriesList()
+        }
+    }
+
 
 }
