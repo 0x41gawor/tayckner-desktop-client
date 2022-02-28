@@ -38,6 +38,8 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
 
     private lateinit var categoryService: Service<Category, CategoryEntity>
 
+    private var selectedItemCategory: Category? = null
+
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         val categoryRepository = CategoryRepository()
         val categoryMapper = CategoryMapper()
@@ -65,7 +67,20 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
     }
 
     override fun update(model: Category) {
-        //TODO
+        selectedItemCategory = model
+        refreshSelectedCategory()
+    }
+
+    private fun refreshSelectedCategory() {
+        if (selectedItemCategory == null) {
+            textField_categoryName.text = ""
+            textField_categoryColor.text = ""
+            textArea_categoryDescription.text = ""
+        } else {
+            textField_categoryName.text = selectedItemCategory!!.name
+            textField_categoryColor.text = selectedItemCategory!!.color
+            textArea_categoryDescription.text = selectedItemCategory!!.description
+        }
     }
 
 
