@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="vbox_root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="label_name" text="Work">
+        <font>
+          <Font size="24.0" />
+        </font>
+    </Label>
+    <Label fx:id="label_description" alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="280.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." wrapText="true">
+        <font>
+          <Font size="13.0" />
+        </font>
+    </Label>
+</VBox>
