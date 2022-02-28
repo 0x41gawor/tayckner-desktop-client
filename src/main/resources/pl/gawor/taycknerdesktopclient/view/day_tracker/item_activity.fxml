@@ -5,24 +5,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER_LEFT" onMouseClicked="#hboxOnMouseClicked" prefHeight="60.0" prefWidth="1000" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.ItemScheduleController">
+<HBox alignment="CENTER_LEFT" onMouseClicked="#hboxOnMouseClicked" prefHeight="80.0" prefWidth="920" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.ItemActivityController">
     <padding>
         <Insets left="10.0" right="10.0" />
     </padding>
-   <Label fx:id="label_category" alignment="CENTER" prefHeight="17.0" prefWidth="86.0" text="INZ" />
+   <Label fx:id="label_category" alignment="CENTER" prefHeight="17.0" prefWidth="86.0" text="INZ">
+    <font>
+        <Font size="20.0" />
+    </font>
+      <HBox.margin>
+         <Insets right="10.0" />
+      </HBox.margin>/>
+   </Label>
     <Label fx:id="label_name" prefHeight="30.0" prefWidth="653.0" text="Kubernetes - course">
         <font>
-          <Font size="20.0" />
+          <Font size="30.0" />
         </font>
     </Label>
     <Label fx:id="label_time" alignment="CENTER" prefHeight="35.0" prefWidth="213.0" text="9:00 - 12:00">
         <font>
-          <Font size="24.0" />
+          <Font size="30.0" />
         </font>
     </Label>
     <Label fx:id="label_breaks" alignment="CENTER" prefHeight="30.0" prefWidth="59.0" text="5">
         <font>
-          <Font size="20.0" />
+          <Font size="30.0" />
         </font>
     </Label>
 </HBox>
