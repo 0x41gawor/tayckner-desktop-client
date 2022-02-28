@@ -25,7 +25,7 @@ import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DayTrackerController : Initializable, ISubscriber<Category> {
+class DayTrackerController : Initializable {
 
     // C A T E G O R Y
 
@@ -65,7 +65,6 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
 
     @FXML private lateinit var textField_activity_startTime: TextField
 
-
     private var categories = ArrayList<Category>()
     private var activities = ArrayList<Activity>()
 
@@ -73,6 +72,13 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
     private lateinit var activityService: ActivityService
 
     private var selectedItemCategory: Category? = null
+
+    private val categoryListener = object : ISubscriber<Category> {
+        override fun update(model: Category) {
+            selectedItemCategory = model
+            refreshSelectedCategory()
+        }
+    }
 
     private val activityListener = object : ISubscriber<Activity> {
         override fun update(model: Activity) {
@@ -103,7 +109,7 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
 
             val itemController = fxmlLoader.getController<ItemCategoryController>()
             itemController.set(model)
-            itemController.subscribe(this)
+            itemController.subscribe(this.categoryListener)
 
             gridPane_category.add(vbox, 1, row)
             gridPane_category.minWidth = Region.USE_COMPUTED_SIZE
@@ -138,11 +144,6 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
             gridPane_activity.prefHeight = Region.USE_COMPUTED_SIZE
             GridPane.setMargin(root, Insets(10.0))
         }
-    }
-
-    override fun update(model: Category) {
-        selectedItemCategory = model
-        refreshSelectedCategory()
     }
 
     private fun refreshSelectedCategory() {
