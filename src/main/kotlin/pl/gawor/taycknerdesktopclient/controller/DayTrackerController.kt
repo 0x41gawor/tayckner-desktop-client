@@ -72,6 +72,7 @@ class DayTrackerController : Initializable {
     private lateinit var activityService: ActivityService
 
     private var selectedItemCategory: Category? = null
+    private var selectedItemActivity: Activity? = null
 
     private val categoryListener = object : ISubscriber<Category> {
         override fun update(model: Category) {
@@ -82,7 +83,8 @@ class DayTrackerController : Initializable {
 
     private val activityListener = object : ISubscriber<Activity> {
         override fun update(model: Activity) {
-            println("elo")
+            selectedItemActivity = model
+            refreshSelectedActivity()
         }
     }
 
@@ -155,6 +157,22 @@ class DayTrackerController : Initializable {
             textField_categoryName.text = selectedItemCategory!!.name
             textField_categoryColor.text = selectedItemCategory!!.color
             textArea_categoryDescription.text = selectedItemCategory!!.description
+        }
+    }
+
+    private fun refreshSelectedActivity() {
+        if (selectedItemActivity == null) {
+            comboBox_activiy_category.promptText = ""
+            textField_activity_name.text = ""
+            textField_activity_startTime.text = ""
+            textField_activity_endTime.text = ""
+            textField_activity_breaks.text = ""
+        } else {
+            comboBox_activiy_category.promptText = selectedItemActivity!!.category.name
+            textField_activity_name.text = selectedItemActivity!!.name
+            textField_activity_startTime.text = selectedItemActivity!!.startTime.toString().substring(0, 5)
+            textField_activity_endTime.text = if (selectedItemActivity!!.endTime == null) "" else selectedItemActivity!!.endTime.toString().substring(0, 5)
+            textField_activity_breaks.text = if (selectedItemActivity!!.breaks == 0) "" else selectedItemActivity!!.breaks.toString()
         }
     }
 
