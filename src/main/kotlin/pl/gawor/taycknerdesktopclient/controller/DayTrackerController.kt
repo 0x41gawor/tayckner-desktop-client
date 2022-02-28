@@ -8,10 +8,12 @@ import javafx.scene.control.Button
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
 import javafx.scene.layout.GridPane
+import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Category
+import pl.gawor.taycknerdesktopclient.model.User
 import pl.gawor.taycknerdesktopclient.repository.CategoryRepository
 import pl.gawor.taycknerdesktopclient.repository.entity.CategoryEntity
 import pl.gawor.taycknerdesktopclient.service.Service
@@ -62,6 +64,12 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
             itemController.subscribe(this)
 
             gridPane_category.add(vbox, 1, row)
+            gridPane_category.minWidth = Region.USE_COMPUTED_SIZE
+            gridPane_category.minHeight = Region.USE_COMPUTED_SIZE
+            gridPane_category.maxWidth = Region.USE_COMPUTED_SIZE
+            gridPane_category.maxHeight = Region.USE_COMPUTED_SIZE
+            gridPane_category.prefWidth = Region.USE_COMPUTED_SIZE
+            gridPane_category.prefHeight = Region.USE_COMPUTED_SIZE
             GridPane.setMargin(vbox, Insets(5.0))
         }
     }
@@ -81,6 +89,16 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
             textField_categoryColor.text = selectedItemCategory!!.color
             textArea_categoryDescription.text = selectedItemCategory!!.description
         }
+    }
+
+    fun button_category_addOnAction() {
+        val model = Category(0, textField_categoryName.text, textArea_categoryDescription.text, textField_categoryColor.text, User())
+        categoryService.create(model)
+        refreshCategoriesList()
+    }
+
+    fun button_category_deleteOnAction() {
+
     }
 
 
