@@ -98,7 +98,12 @@ class DayTrackerController : Initializable, ISubscriber<Category> {
     }
 
     fun button_category_deleteOnAction() {
-
+        if (selectedItemCategory != null) {
+            categoryService.delete(selectedItemCategory!!.id)
+            selectedItemCategory = null
+            refreshSelectedCategory()
+            refreshCategoriesList()
+        }
     }
 
 
