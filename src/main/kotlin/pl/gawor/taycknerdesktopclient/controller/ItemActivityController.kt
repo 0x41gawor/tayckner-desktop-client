@@ -2,19 +2,21 @@ package pl.gawor.taycknerdesktopclient.controller
 
 import javafx.fxml.FXML
 import javafx.scene.control.Label
+import javafx.scene.layout.HBox
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Activity
 import java.time.LocalTime
 
 class ItemActivityController {
-    @FXML
-    private lateinit var label_breaks: Label
+    @FXML private lateinit var label_breaks: Label
 
     @FXML private lateinit var label_category: Label
 
     @FXML private lateinit var label_name: Label
 
     @FXML private lateinit var label_time: Label
+
+    @FXML private lateinit var hbox_root: HBox
 
     private lateinit var model: Activity
 
@@ -24,6 +26,7 @@ class ItemActivityController {
         label_name.text = model.name
         label_time.text = getTimeText(model.startTime, model.endTime)
         label_breaks.text = if (model.breaks == 0) "" else model.breaks.toString()
+        hbox_root.style = "-fx-background-color: ${model.category.color};"
     }
 
     @FXML fun hboxOnMouseClicked() {
