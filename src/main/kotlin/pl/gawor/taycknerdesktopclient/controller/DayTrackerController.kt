@@ -22,6 +22,8 @@ import pl.gawor.taycknerdesktopclient.service.Service
 import pl.gawor.taycknerdesktopclient.service.mapper.ActivityMapper
 import pl.gawor.taycknerdesktopclient.service.mapper.CategoryMapper
 import java.net.URL
+import java.time.LocalDate
+import java.time.LocalTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -122,6 +124,11 @@ class DayTrackerController : Initializable {
             gridPane_category.prefHeight = Region.USE_COMPUTED_SIZE
             GridPane.setMargin(vbox, Insets(5.0))
         }
+        comboBox_activiy_category.items.clear()
+        for (category in categories) {
+            comboBox_activiy_category.items.add(category.name)
+        }
+
     }
 
     private fun refreshActivitiesList() {
@@ -168,7 +175,7 @@ class DayTrackerController : Initializable {
             textField_activity_endTime.text = ""
             textField_activity_breaks.text = ""
         } else {
-            comboBox_activiy_category.promptText = selectedItemActivity!!.category.name
+            comboBox_activiy_category.value = selectedItemActivity!!.category.name
             textField_activity_name.text = selectedItemActivity!!.name
             textField_activity_startTime.text = selectedItemActivity!!.startTime.toString().substring(0, 5)
             textField_activity_endTime.text = if (selectedItemActivity!!.endTime == null) "" else selectedItemActivity!!.endTime.toString().substring(0, 5)
@@ -199,5 +206,33 @@ class DayTrackerController : Initializable {
         }
     }
 
+    fun button_activity_addOnAction() {
+        println("CHUJOZA")
+        val name = textField_activity_name.text
+        val startTime = timeTextToTime(textField_activity_startTime.text)
+        val endTime = timeTextToTime(textField_activity_endTime.text)
+        val date = LocalDate.now()
+        val duration = 0
+        val breaks = if (textField_activity_breaks.text == "") 0 else textField_activity_breaks.text.toInt()
+        println(comboBox_activiy_category.value)
+        println(categories)
+        val category = categories.find { it.name == comboBox_activiy_category.value } ?: return
+        println(category)
+        val model = Activity(0, name, startTime!!, endTime, date, duration, breaks, category)
+        activityService.create(model)
+        refreshActivitiesList()
+    }
+
+    private fun timeTextToTime(input: String): LocalTime? {
+        if (input == "") return null
+        val regex1 = Regex("\\d\\d[:]\\d\\d")
+        if (!(regex1.matches(input))) return null
+        val hour = input.substring(0, 2)
+        val minute = input.substring(3, 5)
+        val hourInt = hour.toInt()
+        val minuteInt = minute.toInt()
+        val result = LocalTime.of(hourInt, minuteInt)
+        return result
+    }
 
 }

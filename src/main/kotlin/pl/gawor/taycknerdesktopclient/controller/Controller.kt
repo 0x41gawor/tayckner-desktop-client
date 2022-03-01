@@ -20,7 +20,6 @@ import pl.gawor.taycknerdesktopclient.service.ScheduleService
 import pl.gawor.taycknerdesktopclient.service.mapper.ScheduleMapper
 import java.net.URL
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.LocalTime
 import java.util.*
 import kotlin.collections.ArrayList
@@ -163,18 +162,14 @@ class Controller : Initializable, ISubscriber<Schedule> {
     }
 
     private fun timeTextToTime(input: String): LocalTime? {
-        println("Controller.timeTextToTime(input = $input)")
         if (input == "") return null
         val regex1 = Regex("\\d\\d[:]\\d\\d")
         if (!(regex1.matches(input))) return null
         val hour = input.substring(0, 2)
         val minute = input.substring(3, 5)
-        println(hour)
-        println(minute)
         val hourInt = hour.toInt()
         val minuteInt = minute.toInt()
         val result = LocalTime.of(hourInt, minuteInt)
-        println("Controller.timeTextToTime(input = $input) = $result")
         return result
     }
 
