@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
+import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.controller.util.DateDir
@@ -40,7 +41,7 @@ class DayTrackerController : Initializable {
 
     @FXML private lateinit var textArea_categoryDescription: TextArea
 
-    @FXML private lateinit var textField_categoryColor: TextField
+    @FXML private lateinit var colorPicker: ColorPicker
 
     @FXML private lateinit var textField_categoryName: TextField
 
@@ -162,11 +163,11 @@ class DayTrackerController : Initializable {
     private fun refreshSelectedCategory() {
         if (selectedItemCategory == null) {
             textField_categoryName.text = ""
-            textField_categoryColor.text = ""
+            colorPicker.value = Color.WHITE
             textArea_categoryDescription.text = ""
         } else {
             textField_categoryName.text = selectedItemCategory!!.name
-            textField_categoryColor.text = selectedItemCategory!!.color
+            colorPicker.value = Color.valueOf(selectedItemCategory!!.color)
             textArea_categoryDescription.text = selectedItemCategory!!.description
         }
     }
@@ -188,7 +189,8 @@ class DayTrackerController : Initializable {
     }
 
     fun button_category_addOnAction() {
-        val model = Category(0, textField_categoryName.text, textArea_categoryDescription.text, textField_categoryColor.text, User())
+        println("#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6))
+        val model = Category(0, textField_categoryName.text, textArea_categoryDescription.text, "#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6), User())
         categoryService.create(model)
         refreshCategoriesList()
     }
@@ -204,9 +206,10 @@ class DayTrackerController : Initializable {
 
     fun hbox_category_crud_inputsOnAction() {
         if (selectedItemCategory != null) {
-            val model = Category(selectedItemCategory!!.id, textField_categoryName.text, textArea_categoryDescription.text, textField_categoryColor.text, User())
+            val model = Category(selectedItemCategory!!.id, textField_categoryName.text, textArea_categoryDescription.text, "#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6), User())
             categoryService.update(model.id, model)
             refreshCategoriesList()
+            refreshActivitiesList()
         }
     }
 
@@ -225,7 +228,7 @@ class DayTrackerController : Initializable {
         }
     }
 
-    fun hbox_crud_inputsOnAction() {
+    fun hbox_activity_crudOnInputsOnAction() {
         if (selectedItemActivity != null) {
             val model = activityModelFromInput()
             selectedItemActivity = activityService.update(selectedItemActivity!!.id, model)
