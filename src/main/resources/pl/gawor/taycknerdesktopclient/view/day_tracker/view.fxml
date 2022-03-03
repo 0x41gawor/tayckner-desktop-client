@@ -47,11 +47,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="textField_categoryColor" onAction="#hbox_category_crud_inputsOnAction" promptText="#ffffff">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </TextField>
+                  <ColorPicker fx:id="colorPicker" prefHeight="25.0" prefWidth="63.0" />
                </HBox>
                <TextArea fx:id="textArea_categoryDescription" prefHeight="112.0" prefWidth="257.0" promptText="Category description">
                   <VBox.margin>
@@ -72,19 +68,19 @@
       </VBox>
       <VBox prefHeight="1013.0" prefWidth="960.0">
          <HBox alignment="CENTER" prefHeight="71.0" prefWidth="960.0">
-            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="50.0">
+            <Button fx:id="butoon_prev" mnemonicParsing="false" onAction="#button_prevOnMouseClicked" prefHeight="38.0" prefWidth="50.0">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/day-prev.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Label alignment="CENTER" prefHeight="70.0" prefWidth="333.0" text="24 feb 2022">
+            <Label fx:id="label_date" alignment="CENTER" prefHeight="70.0" prefWidth="333.0" text="24 feb 2022">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="50.0">
+            <Button fx:id="button_next" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#button_nextOnMouseClicked" prefHeight="38.0" prefWidth="50.0">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/day-next.png" />
@@ -93,7 +89,7 @@
             </Button>
          </HBox>
          <ScrollPane prefHeight="825.0" prefWidth="960.0">
-            <GridPane alignment="CENTER" prefHeight="824.0" prefWidth="940">
+            <GridPane fx:id="gridPane_activity" alignment="CENTER" prefHeight="824.0" prefWidth="940">
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
@@ -103,7 +99,7 @@
             </GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="117.0" prefWidth="960.0">
-            <Button mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_activity_add" mnemonicParsing="false" onAction="#button_activity_addOnAction" prefHeight="73.0" prefWidth="52.0">
                <graphic>
                   <ImageView fitHeight="68.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />
@@ -113,24 +109,24 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <ComboBox prefHeight="73.0" prefWidth="93.0" promptText="Category" />
-            <TextField prefHeight="73.0" prefWidth="407.0" promptText="Activity name">
+            <ComboBox fx:id="comboBox_activiy_category" prefHeight="73.0" prefWidth="93.0" promptText="Category" />
+            <TextField fx:id="textField_activity_name" onAction="#hbox_activity_crudOnInputsOnAction" prefHeight="73.0" prefWidth="407.0" promptText="Activity name">
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <TextField alignment="CENTER" prefHeight="73.0" prefWidth="100.0" promptText="00:00">
+            <TextField fx:id="textField_activity_startTime" alignment="CENTER" onAction="#hbox_activity_crudOnInputsOnAction" prefHeight="73.0" prefWidth="100.0" promptText="00:00">
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <TextField alignment="CENTER" prefHeight="73.0" prefWidth="100.0" promptText="00:00">
+            <TextField fx:id="textField_activity_endTime" alignment="CENTER" onAction="#hbox_activity_crudOnInputsOnAction" prefHeight="73.0" prefWidth="100.0" promptText="00:00">
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <TextField alignment="CENTER" prefHeight="73.0" prefWidth="51.0" promptText="0">
+            <TextField fx:id="textField_activity_breaks" alignment="CENTER" onAction="#hbox_activity_crudOnInputsOnAction" prefHeight="73.0" prefWidth="51.0" promptText="0">
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <Button mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_activity_delete" mnemonicParsing="false" onAction="#button_activity_deleteOnAction" prefHeight="73.0" prefWidth="52.0">
                <graphic>
                   <ImageView fitHeight="73.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />
