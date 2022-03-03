@@ -11,6 +11,7 @@ import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
+import pl.gawor.taycknerdesktopclient.controller.util.DateDir
 import pl.gawor.taycknerdesktopclient.model.Activity
 import pl.gawor.taycknerdesktopclient.model.Category
 import pl.gawor.taycknerdesktopclient.model.User
@@ -76,6 +77,8 @@ class DayTrackerController : Initializable {
     private var selectedItemCategory: Category? = null
     private var selectedItemActivity: Activity? = null
 
+    private var selectedDate: LocalDate = LocalDate.now()
+
     private val categoryListener = object : ISubscriber<Category> {
         override fun update(model: Category) {
             selectedItemCategory = model
@@ -98,6 +101,7 @@ class DayTrackerController : Initializable {
         val activityMapper = ActivityMapper()
         activityService = ActivityService(activityRepository, activityMapper)
 
+        setSelectedDate(DateDir.TODAY)
         refreshCategoriesList()
         refreshActivitiesList()
     }
@@ -132,7 +136,7 @@ class DayTrackerController : Initializable {
     }
 
     private fun refreshActivitiesList() {
-        activities = activityService.list() as ArrayList<Activity>
+        activities = activityService.list(selectedDate) as ArrayList<Activity>
 
         gridPane_activity.children.clear()
 
@@ -229,11 +233,33 @@ class DayTrackerController : Initializable {
         }
     }
 
+    fun button_prevOnMouseClicked() {
+        setSelectedDate(DateDir.PREV)
+        refreshActivitiesList()
+    }
+
+    fun button_nextOnMouseClicked() {
+        setSelectedDate(DateDir.NEXT)
+        refreshActivitiesList()
+    }
+
+    private fun setSelectedDate(sel: DateDir) {
+        selectedDate = when (sel) {
+            DateDir.TODAY -> LocalDate.now()
+            DateDir.PREV -> selectedDate.minusDays(1)
+            DateDir.NEXT -> selectedDate.plusDays(1)
+        }
+        val day = selectedDate.dayOfMonth
+        val month = selectedDate.month.name
+        val year = selectedDate.year
+        label_date.text = "$day ${month.substring(0, 3)} $year"
+    }
+
     private fun activityModelFromInput(): Activity {
         val name = textField_activity_name.text
         val startTime = timeTextToTime(textField_activity_startTime.text)
         val endTime = timeTextToTime(textField_activity_endTime.text)
-        val date = LocalDate.now()
+        val date = selectedDate
         val duration = 0
         val breaks = if (textField_activity_breaks.text == "") 0 else textField_activity_breaks.text.toInt()
         var category = categories.find { it.name == comboBox_activiy_category.value }
@@ -252,5 +278,4 @@ class DayTrackerController : Initializable {
         val result = LocalTime.of(hourInt, minuteInt)
         return result
     }
-
 }
