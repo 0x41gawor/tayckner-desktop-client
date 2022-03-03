@@ -207,18 +207,7 @@ class DayTrackerController : Initializable {
     }
 
     fun button_activity_addOnAction() {
-        println("CHUJOZA")
-        val name = textField_activity_name.text
-        val startTime = timeTextToTime(textField_activity_startTime.text)
-        val endTime = timeTextToTime(textField_activity_endTime.text)
-        val date = LocalDate.now()
-        val duration = 0
-        val breaks = if (textField_activity_breaks.text == "") 0 else textField_activity_breaks.text.toInt()
-        println(comboBox_activiy_category.value)
-        println(categories)
-        val category = categories.find { it.name == comboBox_activiy_category.value } ?: return
-        println(category)
-        val model = Activity(0, name, startTime!!, endTime, date, duration, breaks, category)
+        val model = activityModelFromInput()
         activityService.create(model)
         refreshActivitiesList()
     }
@@ -230,6 +219,26 @@ class DayTrackerController : Initializable {
             refreshSelectedActivity()
             refreshActivitiesList()
         }
+    }
+
+    fun hbox_crud_inputsOnAction() {
+        if (selectedItemActivity != null) {
+            val model = activityModelFromInput()
+            selectedItemActivity = activityService.update(selectedItemActivity!!.id, model)
+            refreshActivitiesList()
+        }
+    }
+
+    private fun activityModelFromInput(): Activity {
+        val name = textField_activity_name.text
+        val startTime = timeTextToTime(textField_activity_startTime.text)
+        val endTime = timeTextToTime(textField_activity_endTime.text)
+        val date = LocalDate.now()
+        val duration = 0
+        val breaks = if (textField_activity_breaks.text == "") 0 else textField_activity_breaks.text.toInt()
+        var category = categories.find { it.name == comboBox_activiy_category.value }
+        if (category == null) category = Category()
+        return  Activity(0, name, startTime!!, endTime, date, duration, breaks, category)
     }
 
     private fun timeTextToTime(input: String): LocalTime? {

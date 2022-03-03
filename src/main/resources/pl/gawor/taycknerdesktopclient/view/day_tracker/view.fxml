@@ -114,19 +114,19 @@
                </HBox.margin>
             </Button>
             <ComboBox fx:id="comboBox_activiy_category" prefHeight="73.0" prefWidth="93.0" promptText="Category" />
-            <TextField fx:id="textField_activity_name" prefHeight="73.0" prefWidth="407.0" promptText="Activity name">
+            <TextField fx:id="textField_activity_name" onAction="#hbox_crud_inputsOnAction" prefHeight="73.0" prefWidth="407.0" promptText="Activity name">
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <TextField fx:id="textField_activity_startTime" alignment="CENTER" prefHeight="73.0" prefWidth="100.0" promptText="00:00">
+            <TextField fx:id="textField_activity_startTime" alignment="CENTER" onAction="#hbox_crud_inputsOnAction" prefHeight="73.0" prefWidth="100.0" promptText="00:00">
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <TextField fx:id="textField_activity_endTime" alignment="CENTER" prefHeight="73.0" prefWidth="100.0" promptText="00:00">
+            <TextField fx:id="textField_activity_endTime" alignment="CENTER" onAction="#hbox_crud_inputsOnAction" prefHeight="73.0" prefWidth="100.0" promptText="00:00">
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <TextField fx:id="textField_activity_breaks" alignment="CENTER" prefHeight="73.0" prefWidth="51.0" promptText="0">
+            <TextField fx:id="textField_activity_breaks" alignment="CENTER" onAction="#hbox_crud_inputsOnAction" prefHeight="73.0" prefWidth="51.0" promptText="0">
                <font>
                   <Font size="24.0" />
                </font></TextField>
