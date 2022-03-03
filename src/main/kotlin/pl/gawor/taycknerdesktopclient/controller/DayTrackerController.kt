@@ -223,6 +223,15 @@ class DayTrackerController : Initializable {
         refreshActivitiesList()
     }
 
+    fun button_activity_deleteOnAction() {
+        if (selectedItemActivity != null) {
+            activityService.delete(selectedItemActivity!!.id)
+            selectedItemActivity = null
+            refreshSelectedActivity()
+            refreshActivitiesList()
+        }
+    }
+
     private fun timeTextToTime(input: String): LocalTime? {
         if (input == "") return null
         val regex1 = Regex("\\d\\d[:]\\d\\d")

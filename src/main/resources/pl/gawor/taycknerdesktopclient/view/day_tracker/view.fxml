@@ -130,7 +130,7 @@
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <Button fx:id="button_activity_delete" mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_activity_delete" mnemonicParsing="false" onAction="#button_activity_deleteOnAction" prefHeight="73.0" prefWidth="52.0">
                <graphic>
                   <ImageView fitHeight="73.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />
