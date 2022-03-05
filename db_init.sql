@@ -3,6 +3,7 @@ USE `tayckner_desktop_db`;
 
 DROP TABLE IF EXISTS `activity`;
 DROP TABLE IF EXISTS `schedule`;
+DROP TABLE IF EXISTS `habit`;
 DROP TABLE IF EXISTS `category`;
 DROP TABLE IF EXISTS `user`;
 
@@ -73,6 +74,24 @@ REFERENCES `user` (`id`)
 on delete no action on update no action
 ) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8, COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `habit` (
+`id` int NOT NULL auto_increment,
+`name` varchar(45) NOT NULL,
+`description` varchar(255) NOT NULL,
+`color` varchar(7)  NOT NULL,
+`user_id` int NOT NULL,
+
+primary key (`id`),
+
+KEY `FK_user_idx` (`user_id`),
+
+CONSTRAINT `FK_user_in_habit`
+FOREIGN KEY (`user_id`)
+REFERENCES `user` (`id`)
+
+on delete no action on update no action
+) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8, COLLATE=utf8_unicode_ci;
+
 INSERT INTO `user` VALUES
 	(1, 'test_user', 'secret', 'test', 'testowski', 'test@test.pl');
     
@@ -86,11 +105,6 @@ select * from `user`;
 select * from `schedule`;
 select * from `category`;
 select * from `activity`;
-
-
-	
-update user set username = '', password = '', first_name = '', last_name = '', email = '' where id = 3;
-
-update schedule set name = 'fd', start_time = now(), end_time = now(), duration = 0.5, user_id = 1 where id = 3;  
+select * from `habit`;
 
 select * from user where id = 3
