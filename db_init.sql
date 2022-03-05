@@ -3,6 +3,7 @@ USE `tayckner_desktop_db`;
 
 DROP TABLE IF EXISTS `activity`;
 DROP TABLE IF EXISTS `schedule`;
+DROP TABLE IF EXISTS `habit_event`;
 DROP TABLE IF EXISTS `habit`;
 DROP TABLE IF EXISTS `category`;
 DROP TABLE IF EXISTS `user`;
@@ -88,6 +89,24 @@ KEY `FK_user_idx` (`user_id`),
 CONSTRAINT `FK_user_in_habit`
 FOREIGN KEY (`user_id`)
 REFERENCES `user` (`id`)
+
+on delete no action on update no action
+) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8, COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `habit_event` (
+`id` int NOT NULL auto_increment,
+`habit_id` int NOT NULL,
+`date` date NOT NULL,
+`comment` varchar(255) NOT NULL,
+`count` int default 1 NOT NULL,
+
+primary key (`id`),
+
+KEY `FK_habit_idx` (`habit_id`),
+
+CONSTRAINT `FK_habit`
+FOREIGN KEY (`habit_id`)
+REFERENCES `habit` (`id`)
 
 on delete no action on update no action
 ) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8, COLLATE=utf8_unicode_ci;
