@@ -5,7 +5,7 @@ data class Habit(
     val name: String,
     val description: String,
     val color: String,
-    val user:User
+    val user: User
 ) {
     constructor() : this(1, "", "", "", User())
 }

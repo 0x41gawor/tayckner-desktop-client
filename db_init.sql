@@ -125,5 +125,6 @@ select * from `schedule`;
 select * from `category`;
 select * from `activity`;
 select * from `habit`;
+select * from `habit_event`;
 
 select * from user where id = 3
