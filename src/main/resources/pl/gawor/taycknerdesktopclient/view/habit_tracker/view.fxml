@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <HBox prefHeight="1013.0" prefWidth="1920.0">
+      <VBox alignment="TOP_CENTER" prefHeight="1013.0" prefWidth="100.0">
+         <padding>
+            <Insets top="73.0" />
+         </padding>
+         <Button mnemonicParsing="false" prefHeight="79.0" prefWidth="85.0" text="Day-Planner" />
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="1013.0" prefWidth="380.0">
+         <Label contentDisplay="CENTER" prefHeight="83.0" prefWidth="170.0" text="Habits">
+            <font>
+               <Font size="36.0" />
+            </font>
+         </Label>
+         <ScrollPane prefHeight="839.0" prefWidth="380.0">
+            <GridPane fx:id="gridPane_habit" alignment="CENTER" prefHeight="839.0" prefWidth="360">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </GridPane>
+         </ScrollPane>
+         <HBox alignment="CENTER" prefHeight="131.0" prefWidth="380.0">
+            <Button fx:id="button_habitAdd" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../img/add.png" />
+                  </ImageView>
+               </graphic></Button>
+            <VBox prefHeight="124.0" prefWidth="277.0">
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <VBox.margin>
+                     <Insets left="5.0" right="5.0" />
+                  </VBox.margin>
+                  <TextField fx:id="textField_habitName" prefHeight="25.0" prefWidth="199.0" promptText="Habit name">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ColorPicker fx:id="colorPicker" prefHeight="25.0" prefWidth="63.0" />
+               </HBox>
+               <TextArea fx:id="textArea_habitDescription" prefHeight="112.0" prefWidth="257.0" promptText="Habit description">
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="5.0" right="5.0" />
+                  </VBox.margin>
+               </TextArea>
+            </VBox>
+            <Button fx:id="button_habitDelete" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../img/delete.png" />
+                  </ImageView>
+               </graphic></Button>
+            <padding>
+               <Insets left="5.0" right="5.0" />
+            </padding>
+         </HBox>
+      </VBox>
+      <VBox prefHeight="1013.0" prefWidth="960.0">
+         <ScrollPane prefHeight="895.0" prefWidth="960.0">
+            <GridPane fx:id="gridPane_habitEvent" alignment="CENTER" prefHeight="893.0" prefWidth="940">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </GridPane>
+         </ScrollPane>
+         <HBox alignment="CENTER" prefHeight="117.0" prefWidth="960.0">
+            <Button fx:id="button_habitEventAdd" mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+               <graphic>
+                  <ImageView fitHeight="68.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../img/add.png" />
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <ComboBox fx:id="comboBox_habitEventHabit" prefHeight="73.0" prefWidth="93.0" promptText="Habit" />
+            <DatePicker fx:id="datePicker" prefHeight="74.0" prefWidth="174.0" />
+            <TextField fx:id="textField_habitEventName" prefHeight="73.0" prefWidth="315.0" promptText="Comment">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+            <TextField fx:id="textField_habitEventCount" alignment="CENTER" prefHeight="73.0" prefWidth="51.0" promptText="0">
+               <font>
+                  <Font size="24.0" />
+               </font></TextField>
+            <Button fx:id="button_habitEventDelete" mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+               <graphic>
+                  <ImageView fitHeight="73.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../img/delete.png" />
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin></Button>
+            <VBox.margin>
+               <Insets left="10.0" right="10.0" />
+            </VBox.margin>
+         </HBox>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="1013.0" prefWidth="482.0">
+         <Label text="Some habit stats will appear here!" />
+      </VBox>
+   </HBox>
+</AnchorPane>
