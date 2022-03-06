@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.HabitTrackerController">
    <HBox prefHeight="1013.0" prefWidth="1920.0">
       <VBox alignment="TOP_CENTER" prefHeight="1013.0" prefWidth="100.0">
          <padding>
@@ -31,7 +31,7 @@
             </GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="131.0" prefWidth="380.0">
-            <Button fx:id="button_habitAdd" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_habitAdd" mnemonicParsing="false" onAction="#button_habitAddOnAction" prefHeight="50.0" prefWidth="50.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />
@@ -42,7 +42,7 @@
                   <VBox.margin>
                      <Insets left="5.0" right="5.0" />
                   </VBox.margin>
-                  <TextField fx:id="textField_habitName" prefHeight="25.0" prefWidth="199.0" promptText="Habit name">
+                  <TextField fx:id="textField_habitName" onAction="#textField_habitNameOnAction" prefHeight="25.0" prefWidth="199.0" promptText="Habit name">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
@@ -55,7 +55,7 @@
                   </VBox.margin>
                </TextArea>
             </VBox>
-            <Button fx:id="button_habitDelete" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_habitDelete" mnemonicParsing="false" onAction="#button_habitDeleteOnAction" prefHeight="50.0" prefWidth="50.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />

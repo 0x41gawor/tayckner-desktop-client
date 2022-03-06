@@ -69,6 +69,8 @@ class DayTrackerController : Initializable {
 
     @FXML private lateinit var textField_activity_startTime: TextField
 
+    // P R I V A T E
+
     private var categories = ArrayList<Category>()
     private var activities = ArrayList<Activity>()
 
@@ -189,7 +191,6 @@ class DayTrackerController : Initializable {
     }
 
     fun button_category_addOnAction() {
-        println("#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6))
         val model = Category(0, textField_categoryName.text, textArea_categoryDescription.text, "#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6), User())
         categoryService.create(model)
         refreshCategoriesList()
