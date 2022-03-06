@@ -69,6 +69,8 @@ class DayTrackerController : Initializable {
 
     @FXML private lateinit var textField_activity_startTime: TextField
 
+    // P R I V A T E
+
     private var categories = ArrayList<Category>()
     private var activities = ArrayList<Activity>()
 
