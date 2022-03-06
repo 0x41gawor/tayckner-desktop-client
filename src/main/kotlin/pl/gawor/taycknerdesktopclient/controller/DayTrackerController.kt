@@ -191,7 +191,6 @@ class DayTrackerController : Initializable {
     }
 
     fun button_category_addOnAction() {
-        println("#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6))
         val model = Category(0, textField_categoryName.text, textArea_categoryDescription.text, "#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6), User())
         categoryService.create(model)
         refreshCategoriesList()

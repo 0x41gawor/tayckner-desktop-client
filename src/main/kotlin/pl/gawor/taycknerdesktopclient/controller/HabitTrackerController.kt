@@ -9,7 +9,9 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
+import pl.gawor.taycknerdesktopclient.model.Category
 import pl.gawor.taycknerdesktopclient.model.Habit
+import pl.gawor.taycknerdesktopclient.model.User
 import pl.gawor.taycknerdesktopclient.repository.HabitRepository
 import pl.gawor.taycknerdesktopclient.repository.entity.HabitEntity
 import pl.gawor.taycknerdesktopclient.service.Service
@@ -87,5 +89,11 @@ class HabitTrackerController : Initializable {
             gridPane_habit.prefHeight = Region.USE_COMPUTED_SIZE
             GridPane.setMargin(root, Insets(5.0))
         }
+    }
+
+    fun button_habitAddOnAction() {
+        val model = Habit(0, textField_habitName.text, textArea_habitDescription.text, "#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6), User())
+        habitService.create(model)
+        refreshHabitsList()
     }
 }

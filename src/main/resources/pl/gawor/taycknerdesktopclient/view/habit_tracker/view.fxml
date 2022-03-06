@@ -31,7 +31,7 @@
             </GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="131.0" prefWidth="380.0">
-            <Button fx:id="button_habitAdd" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_habitAdd" mnemonicParsing="false" onAction="#button_habitAddOnAction" prefHeight="50.0" prefWidth="50.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />
