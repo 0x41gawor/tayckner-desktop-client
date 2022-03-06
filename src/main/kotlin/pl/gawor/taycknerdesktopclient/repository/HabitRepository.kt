@@ -26,7 +26,7 @@ class HabitRepository : ICrudRepository<HabitEntity> {
                 )
                 list.add(entity)
             }
-            println("CategoryRepository.list() = $list")
+            println("HabitRepository.list() = $list")
             return list
         }
         println("HabitRepository.list() = null")

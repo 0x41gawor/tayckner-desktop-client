@@ -4,7 +4,6 @@ import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.VBox
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
-import pl.gawor.taycknerdesktopclient.model.Category
 import pl.gawor.taycknerdesktopclient.model.Habit
 
 class ItemHabitController {
