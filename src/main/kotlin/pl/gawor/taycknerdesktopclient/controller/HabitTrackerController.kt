@@ -8,8 +8,9 @@ import javafx.scene.control.*
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
+import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
-import pl.gawor.taycknerdesktopclient.model.Category
+import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Habit
 import pl.gawor.taycknerdesktopclient.model.User
 import pl.gawor.taycknerdesktopclient.repository.HabitRepository
@@ -58,6 +59,15 @@ class HabitTrackerController : Initializable {
 
     private lateinit var habitService: Service<Habit, HabitEntity>
 
+    private var selectedItemHabit: Habit? = null
+
+    private val habitListener = object : ISubscriber<Habit> {
+        override fun update(model: Habit) {
+            selectedItemHabit = model
+            refreshSelectedHabit()
+        }
+    }
+
 
 
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
@@ -79,6 +89,7 @@ class HabitTrackerController : Initializable {
 
             val itemController = fxmlLoader.getController<ItemHabitController>()
             itemController.set((model))
+            itemController.subscribe(this.habitListener)
 
             gridPane_habit.add(root, 1, row)
             gridPane_habit.minWidth = Region.USE_COMPUTED_SIZE
@@ -96,4 +107,28 @@ class HabitTrackerController : Initializable {
         habitService.create(model)
         refreshHabitsList()
     }
+
+    fun button_habitDeleteOnAction() {
+        if (selectedItemHabit != null) {
+            habitService.delete(selectedItemHabit!!.id)
+            selectedItemHabit = null
+            refreshSelectedHabit()
+            refreshHabitsList()
+        }
+    }
+
+    private fun refreshSelectedHabit() {
+        if (selectedItemHabit == null) {
+            textField_habitName.text = ""
+            colorPicker.value = Color.WHITE
+            textArea_habitDescription.text = ""
+        } else {
+            textField_habitName.text = selectedItemHabit!!.name
+            colorPicker.value = Color.valueOf(selectedItemHabit!!.color)
+            textArea_habitDescription.text = selectedItemHabit!!.description
+        }
+    }
+
+
+
 }
