@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
+import pl.gawor.taycknerdesktopclient.model.Category
 import pl.gawor.taycknerdesktopclient.model.Habit
 import pl.gawor.taycknerdesktopclient.model.User
 import pl.gawor.taycknerdesktopclient.repository.HabitRepository
@@ -117,6 +118,14 @@ class HabitTrackerController : Initializable {
         }
     }
 
+    fun textField_habitNameOnAction() {
+        if (selectedItemHabit != null) {
+            val model = Habit(selectedItemHabit!!.id, textField_habitName.text, textArea_habitDescription.text, "#" + Integer.toHexString(colorPicker.value.hashCode()).substring(0,6), User())
+            habitService.update(model.id, model)
+            refreshHabitsList()
+        }
+    }
+
     private fun refreshSelectedHabit() {
         if (selectedItemHabit == null) {
             textField_habitName.text = ""
@@ -128,7 +137,6 @@ class HabitTrackerController : Initializable {
             textArea_habitDescription.text = selectedItemHabit!!.description
         }
     }
-
 
 
 }
