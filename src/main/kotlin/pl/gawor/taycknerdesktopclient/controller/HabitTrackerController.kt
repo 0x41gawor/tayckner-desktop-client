@@ -102,6 +102,15 @@ class HabitTrackerController : Initializable {
         refreshHabitEventsList()
     }
 
+    fun button_habitEventDeleteOnAction() {
+        if (selectedItemHabitEvent != null) {
+            habitEventService.delete(selectedItemHabitEvent!!.id)
+            selectedItemHabitEvent = null
+            refreshSelectedHabitEvent()
+            refreshHabitEventsList()
+        }
+    }
+
     private fun refreshHabitsList() {
         habits = habitService.list() as ArrayList<Habit>
 

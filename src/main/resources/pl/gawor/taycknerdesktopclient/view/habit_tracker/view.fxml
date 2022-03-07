@@ -98,7 +98,7 @@
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <Button fx:id="button_habitEventDelete" mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_habitEventDelete" mnemonicParsing="false" onAction="#button_habitEventDeleteOnAction" prefHeight="73.0" prefWidth="52.0">
                <graphic>
                   <ImageView fitHeight="73.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />
