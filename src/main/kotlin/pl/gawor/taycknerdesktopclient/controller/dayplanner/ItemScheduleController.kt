@@ -1,4 +1,4 @@
-package pl.gawor.taycknerdesktopclient.controller
+package pl.gawor.taycknerdesktopclient.controller.dayplanner
 
 import javafx.fxml.FXML
 import javafx.scene.control.Label

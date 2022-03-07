@@ -1,4 +1,4 @@
-package pl.gawor.taycknerdesktopclient.controller
+package pl.gawor.taycknerdesktopclient.controller.habittracker
 
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
@@ -11,6 +11,7 @@ import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
+import pl.gawor.taycknerdesktopclient.controller.Observer.NavigationPublisher
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Habit
 import pl.gawor.taycknerdesktopclient.model.HabitEvent
@@ -26,7 +27,7 @@ import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HabitTrackerController : Initializable {
+class HabitTrackerController : Initializable, NavigationPublisher() {
 
     // H A B I T
 
