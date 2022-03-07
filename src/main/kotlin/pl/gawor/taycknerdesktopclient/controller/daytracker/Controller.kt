@@ -1,4 +1,4 @@
-package pl.gawor.taycknerdesktopclient.controller
+package pl.gawor.taycknerdesktopclient.controller.daytracker
 
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
@@ -29,7 +29,7 @@ import java.time.LocalTime
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DayTrackerController : Initializable {
+class Controller : Initializable {
 
     // C A T E G O R Y
 

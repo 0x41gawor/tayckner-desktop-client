@@ -1,4 +1,4 @@
-package pl.gawor.taycknerdesktopclient.controller
+package pl.gawor.taycknerdesktopclient.controller.dayplanner
 
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
@@ -98,7 +98,7 @@ class Controller : Initializable, ISubscriber<Schedule> {
         gridPane.children.clear()
 
         for ((row, model) in models.withIndex()) {
-            val fxmlLoader = FXMLLoader(TaycknerApplication::class.java.getResource("view/item_schedule.fxml"))
+            val fxmlLoader = FXMLLoader(TaycknerApplication::class.java.getResource("view/day_planner/item_schedule.fxml"))
             val hbox: HBox = fxmlLoader.load()
 
             val itemController = fxmlLoader.getController<ItemScheduleController>()

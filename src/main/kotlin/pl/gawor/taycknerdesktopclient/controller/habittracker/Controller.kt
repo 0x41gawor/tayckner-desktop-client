@@ -1,4 +1,4 @@
-package pl.gawor.taycknerdesktopclient.controller
+package pl.gawor.taycknerdesktopclient.controller.habittracker
 
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
@@ -26,7 +26,7 @@ import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HabitTrackerController : Initializable {
+class Controller : Initializable {
 
     // H A B I T
 

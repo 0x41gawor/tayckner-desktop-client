@@ -1,10 +1,9 @@
-package pl.gawor.taycknerdesktopclient.controller
+package pl.gawor.taycknerdesktopclient.controller.habittracker
 
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.HBox
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
-import pl.gawor.taycknerdesktopclient.model.Habit
 import pl.gawor.taycknerdesktopclient.model.HabitEvent
 
 class ItemHabitEventController {
