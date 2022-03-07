@@ -4,6 +4,7 @@ import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.Scene
+import javafx.scene.input.KeyCode
 import javafx.stage.Stage
 import pl.gawor.taycknerdesktopclient.controller.Observer.INavigationSubscriber
 import pl.gawor.taycknerdesktopclient.controller.dayplanner.DayPlannerController
@@ -47,20 +48,32 @@ class TaycknerApplication : Application() {
         }
     }
 
-    private fun dayTrackerScene(): Scene {
-        val fxmlLoader = FXMLLoader(TaycknerApplication::class.java.getResource("view/day_tracker/view.fxml"))
-        val root = fxmlLoader.load<Parent>()
-        val controller: DayTrackerController = fxmlLoader.getController() as DayTrackerController
-        controller.subscribe(listener)
-        return Scene(root, SIZE_X, SIZE_Y)
-    }
-
     private fun dayPlannerScene(): Scene {
         val fxmlLoader = FXMLLoader(TaycknerApplication::class.java.getResource("view/day_planner/view.fxml"))
         val root = fxmlLoader.load<Parent>()
         val controller: DayPlannerController = fxmlLoader.getController() as DayPlannerController
         controller.subscribe(listener)
-        return Scene(root, SIZE_X, SIZE_Y)
+        val scene =  Scene(root, SIZE_X, SIZE_Y)
+        scene.setOnKeyPressed {
+            if (it.code == KeyCode.TAB && it.isControlDown) {
+                stage.scene = dayTrackerScene()
+            }
+        }
+        return scene
+    }
+
+    private fun dayTrackerScene(): Scene {
+        val fxmlLoader = FXMLLoader(TaycknerApplication::class.java.getResource("view/day_tracker/view.fxml"))
+        val root = fxmlLoader.load<Parent>()
+        val controller: DayTrackerController = fxmlLoader.getController() as DayTrackerController
+        controller.subscribe(listener)
+        val scene = Scene(root, SIZE_X, SIZE_Y)
+        scene.setOnKeyPressed {
+            if (it.code == KeyCode.TAB && it.isControlDown) {
+                stage.scene = habitTrackerScene()
+            }
+        }
+        return scene
     }
 
     private fun habitTrackerScene(): Scene {
@@ -68,6 +81,12 @@ class TaycknerApplication : Application() {
         val root = fxmlLoader.load<Parent>()
         val controller: HabitTrackerController = fxmlLoader.getController() as HabitTrackerController
         controller.subscribe(listener)
-        return Scene(root, SIZE_X, SIZE_Y)
+        val scene =  Scene(root, SIZE_X, SIZE_Y)
+        scene.setOnKeyPressed {
+            if (it.code == KeyCode.TAB && it.isControlDown) {
+                stage.scene = dayPlannerScene()
+            }
+        }
+        return scene
     }
 }
