@@ -6,6 +6,7 @@ import javafx.fxml.Initializable
 import javafx.geometry.Insets
 import javafx.scene.control.*
 import javafx.scene.layout.GridPane
+import javafx.scene.layout.HBox
 import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
@@ -13,10 +14,14 @@ import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Category
 import pl.gawor.taycknerdesktopclient.model.Habit
+import pl.gawor.taycknerdesktopclient.model.HabitEvent
 import pl.gawor.taycknerdesktopclient.model.User
+import pl.gawor.taycknerdesktopclient.repository.HabitEventRepository
 import pl.gawor.taycknerdesktopclient.repository.HabitRepository
 import pl.gawor.taycknerdesktopclient.repository.entity.HabitEntity
+import pl.gawor.taycknerdesktopclient.repository.entity.HabitEventEntity
 import pl.gawor.taycknerdesktopclient.service.Service
+import pl.gawor.taycknerdesktopclient.service.mapper.HabitEventMapper
 import pl.gawor.taycknerdesktopclient.service.mapper.HabitMapper
 import java.net.URL
 import java.util.*
@@ -57,8 +62,10 @@ class HabitTrackerController : Initializable {
     // P R I V A T E
 
     private var habits = ArrayList<Habit>()
+    private var habitEvents = ArrayList<HabitEvent>()
 
     private lateinit var habitService: Service<Habit, HabitEntity>
+    private lateinit var habitEventService: Service<HabitEvent, HabitEventEntity>
 
     private var selectedItemHabit: Habit? = null
 
@@ -69,14 +76,17 @@ class HabitTrackerController : Initializable {
         }
     }
 
-
-
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         val habitRepository = HabitRepository()
         val habitMapper = HabitMapper()
         habitService = Service(habitRepository, habitMapper)
 
+        val habitEventRepository = HabitEventRepository()
+        val habitEventMapper = HabitEventMapper()
+        habitEventService = Service(habitEventRepository, habitEventMapper)
+
         refreshHabitsList()
+        refreshHabitEventsList()
     }
 
     private fun refreshHabitsList() {
@@ -99,6 +109,29 @@ class HabitTrackerController : Initializable {
             gridPane_habit.maxHeight = Region.USE_COMPUTED_SIZE
             gridPane_habit.prefWidth = Region.USE_COMPUTED_SIZE
             gridPane_habit.prefHeight = Region.USE_COMPUTED_SIZE
+            GridPane.setMargin(root, Insets(5.0))
+        }
+    }
+
+    private fun refreshHabitEventsList() {
+        habitEvents = habitEventService.list() as ArrayList<HabitEvent>
+
+        gridPane_habitEvent.children.clear()
+
+        for ((row, model) in habitEvents.withIndex()) {
+            val fxmlLoader = FXMLLoader(TaycknerApplication::class.java.getResource("view/habit_tracker/item_habitEvent.fxml"))
+            val root: HBox = fxmlLoader.load()
+
+            val itemController = fxmlLoader.getController<ItemHabitEventController>()
+            itemController.set(model)
+
+            gridPane_habitEvent.add(root, 1, row)
+            gridPane_habitEvent.minWidth = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.minHeight = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.maxWidth = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.maxHeight = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.prefWidth = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.prefHeight = Region.USE_COMPUTED_SIZE
             GridPane.setMargin(root, Insets(5.0))
         }
     }
