@@ -9,5 +9,6 @@ module pl.gawor.taycknerdesktopclient {
     opens pl.gawor.taycknerdesktopclient.controller.dayplanner to javafx.fxml;
     opens pl.gawor.taycknerdesktopclient.controller.daytracker to javafx.fxml;
     opens pl.gawor.taycknerdesktopclient.controller.habittracker to javafx.fxml;
+    opens pl.gawor.taycknerdesktopclient.controller.Observer to javafx.fxml;
     exports pl.gawor.taycknerdesktopclient;
 }

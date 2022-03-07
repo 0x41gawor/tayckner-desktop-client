@@ -11,6 +11,7 @@ import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
+import pl.gawor.taycknerdesktopclient.controller.Observer.INavigationPublisher
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.controller.util.DateDir
 import pl.gawor.taycknerdesktopclient.model.Activity
@@ -29,7 +30,7 @@ import java.time.LocalTime
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Controller : Initializable {
+class DayTrackerController : Initializable, INavigationPublisher() {
 
     // C A T E G O R Y
 
@@ -281,17 +282,5 @@ class Controller : Initializable {
         val minuteInt = minute.toInt()
         val result = LocalTime.of(hourInt, minuteInt)
         return result
-    }
-
-    fun button_dayPlannerOnAction() {
-
-    }
-
-    fun button_DayTrackerOnAction() {
-
-    }
-
-    fun button_habitTrackerOnAction() {
-
     }
 }

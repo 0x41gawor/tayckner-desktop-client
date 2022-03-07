@@ -11,6 +11,7 @@ import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
+import pl.gawor.taycknerdesktopclient.controller.Observer.INavigationPublisher
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Habit
 import pl.gawor.taycknerdesktopclient.model.HabitEvent
@@ -26,7 +27,7 @@ import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Controller : Initializable {
+class HabitTrackerController : Initializable, INavigationPublisher() {
 
     // H A B I T
 
@@ -229,18 +230,5 @@ class Controller : Initializable {
         var habit = habits.find { it.name == comboBox_habitEventHabit.value}
         if (habit == null) habit = Habit()
         return HabitEvent(0, date, comment, count, habit)
-    }
-
-
-    fun button_dayPlannerOnAction() {
-
-    }
-
-    fun button_DayTrackerOnAction() {
-
-    }
-
-    fun button_habitTrackerOnAction() {
-
     }
 }
