@@ -26,7 +26,6 @@ import kotlin.collections.ArrayList
 
 //---// S U B S C R I B E R
 class Controller : Initializable, ISubscriber<Schedule> {
-
     @FXML private lateinit var button_next: Button
 
     @FXML private lateinit var label_date: Label
@@ -64,17 +63,17 @@ class Controller : Initializable, ISubscriber<Schedule> {
         refreshList()
     }
 
-    @FXML private fun button_nextOnMouseClicked() {
+    @FXML private fun button_nextOnAction() {
         setSelectedDate(DateDir.NEXT)
         refreshList()
     }
 
-    @FXML private fun button_prevOnMouseClicked() {
+    @FXML private fun button_prevOnAction() {
         setSelectedDate(DateDir.PREV)
         refreshList()
     }
 
-    @FXML private fun button_addOnMouseClicked() {
+    @FXML private fun button_addOnAction() {
         if (textField_name.text != "") {
             val model = modelFromInput(0, textField_name, textField_startTime, textField_endTime, textField_duration)
             service.create(model)
@@ -84,7 +83,7 @@ class Controller : Initializable, ISubscriber<Schedule> {
         }
     }
 
-    @FXML private fun button_deleteOnMouseClicked() {
+    @FXML private fun button_deleteOnAction() {
         if (selectedItemModel != null) {
             service.delete(selectedItemModel!!.id)
             selectedItemModel = null
@@ -173,7 +172,7 @@ class Controller : Initializable, ISubscriber<Schedule> {
         return result
     }
 
-    fun hbox_crud_inputsOnAction() {
+    fun hbox_crud_textFieldsOnAction() {
         if (selectedItemModel != null) {
             val model = modelFromInput(selectedItemModel!!.id, textField_name, textField_startTime, textField_endTime, textField_duration)
             service.update(selectedItemModel!!.id, model)
