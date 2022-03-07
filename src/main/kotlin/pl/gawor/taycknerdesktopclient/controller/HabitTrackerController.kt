@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
-import pl.gawor.taycknerdesktopclient.model.Category
 import pl.gawor.taycknerdesktopclient.model.Habit
 import pl.gawor.taycknerdesktopclient.model.HabitEvent
 import pl.gawor.taycknerdesktopclient.model.User
@@ -51,7 +50,7 @@ class HabitTrackerController : Initializable {
 
     @FXML private lateinit var button_habitEventDelete: Button
 
-    @FXML private lateinit var textField_habitEventName: TextField
+    @FXML private lateinit var textField_habitEventComment: TextField
 
     @FXML private lateinit var comboBox_habitEventHabit: ComboBox<Any>
 
@@ -68,11 +67,19 @@ class HabitTrackerController : Initializable {
     private lateinit var habitEventService: Service<HabitEvent, HabitEventEntity>
 
     private var selectedItemHabit: Habit? = null
+    private var selectedItemHabitEvent: HabitEvent? = null
 
     private val habitListener = object : ISubscriber<Habit> {
         override fun update(model: Habit) {
             selectedItemHabit = model
             refreshSelectedHabit()
+        }
+    }
+
+    private val habitEventListener = object : ISubscriber<HabitEvent> {
+        override fun update(model: HabitEvent) {
+            selectedItemHabitEvent = model
+            refreshSelectedHabitEvent()
         }
     }
 
@@ -124,6 +131,7 @@ class HabitTrackerController : Initializable {
 
             val itemController = fxmlLoader.getController<ItemHabitEventController>()
             itemController.set(model)
+            itemController.subscribe(this.habitEventListener)
 
             gridPane_habitEvent.add(root, 1, row)
             gridPane_habitEvent.minWidth = Region.USE_COMPUTED_SIZE
@@ -171,5 +179,18 @@ class HabitTrackerController : Initializable {
         }
     }
 
-
+    private fun refreshSelectedHabitEvent() {
+        if (selectedItemHabitEvent == null) {
+            comboBox_habitEventHabit.promptText = ""
+            datePicker.value = null
+            textField_habitEventComment.text = ""
+            textField_habitEventCount.text = ""
+        }
+        else {
+            comboBox_habitEventHabit.promptText = selectedItemHabitEvent!!.habit.name
+            datePicker.value = selectedItemHabitEvent!!.date
+            textField_habitEventComment.text = selectedItemHabitEvent!!.comment
+            textField_habitEventCount.text = selectedItemHabitEvent!!.count.toString()
+        }
+    }
 }

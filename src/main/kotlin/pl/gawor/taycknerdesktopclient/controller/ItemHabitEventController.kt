@@ -35,7 +35,7 @@ class ItemHabitEventController {
         label_count.text = if (model.count != 1) model.count.toString() else ""
     }
 
-    @FXML fun vbox_rootOnMouseClicked() {
+    @FXML  fun hbox_rootOnMouseClicked() {
         notifySubscribers()
     }
     //---// S U B S C R I B E R S
