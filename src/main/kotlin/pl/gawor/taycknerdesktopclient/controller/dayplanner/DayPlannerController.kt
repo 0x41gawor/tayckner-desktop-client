@@ -105,14 +105,11 @@ class DayPlannerController : Initializable, ISubscriber<Schedule>, NavigationPub
             val itemController = fxmlLoader.getController<ItemScheduleController>()
             itemController.set(model)
             itemController.subscribe(this)
-            gridPane.add(hbox, 1, row)
-            gridPane.minWidth = Region.USE_COMPUTED_SIZE
-            gridPane.minHeight = Region.USE_COMPUTED_SIZE
-            gridPane.maxWidth = Region.USE_COMPUTED_SIZE
-            gridPane.maxHeight = Region.USE_COMPUTED_SIZE
-            gridPane.prefWidth = Region.USE_COMPUTED_SIZE
-            gridPane.prefHeight = Region.USE_COMPUTED_SIZE
+
             GridPane.setMargin(hbox, Insets(7.0))
+            gridPane.prefHeight = Region.USE_PREF_SIZE
+            gridPane.add(hbox, 1, row)
+
         }
     }
 
