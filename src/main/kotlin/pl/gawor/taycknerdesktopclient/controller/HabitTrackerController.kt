@@ -111,6 +111,15 @@ class HabitTrackerController : Initializable {
         }
     }
 
+    fun hbox_habitEventCrudOnAction() {
+        if (selectedItemHabitEvent != null) {
+            val model = habitEventModelFromInput()
+            selectedItemHabitEvent = habitEventService.update(selectedItemHabitEvent!!.id, model)
+            refreshHabitEventsList()
+        }
+
+    }
+
     private fun refreshHabitsList() {
         habits = habitService.list() as ArrayList<Habit>
 
@@ -206,8 +215,7 @@ class HabitTrackerController : Initializable {
             textField_habitEventCount.text = ""
         }
         else {
-            comboBox_habitEventHabit.promptText = selectedItemHabitEvent!!.habit.name
-            comboBox_habitEventHabit.style = "-fx-background-color: ${selectedItemHabitEvent!!.habit.color};"
+            comboBox_habitEventHabit.value = selectedItemHabitEvent!!.habit.name
             datePicker.value = selectedItemHabitEvent!!.date
             textField_habitEventComment.text = selectedItemHabitEvent!!.comment
             textField_habitEventCount.text = selectedItemHabitEvent!!.count.toString()
