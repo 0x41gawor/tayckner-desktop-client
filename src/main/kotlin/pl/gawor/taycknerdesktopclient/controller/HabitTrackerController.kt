@@ -6,17 +6,21 @@ import javafx.fxml.Initializable
 import javafx.geometry.Insets
 import javafx.scene.control.*
 import javafx.scene.layout.GridPane
+import javafx.scene.layout.HBox
 import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
-import pl.gawor.taycknerdesktopclient.model.Category
 import pl.gawor.taycknerdesktopclient.model.Habit
+import pl.gawor.taycknerdesktopclient.model.HabitEvent
 import pl.gawor.taycknerdesktopclient.model.User
+import pl.gawor.taycknerdesktopclient.repository.HabitEventRepository
 import pl.gawor.taycknerdesktopclient.repository.HabitRepository
 import pl.gawor.taycknerdesktopclient.repository.entity.HabitEntity
+import pl.gawor.taycknerdesktopclient.repository.entity.HabitEventEntity
 import pl.gawor.taycknerdesktopclient.service.Service
+import pl.gawor.taycknerdesktopclient.service.mapper.HabitEventMapper
 import pl.gawor.taycknerdesktopclient.service.mapper.HabitMapper
 import java.net.URL
 import java.util.*
@@ -46,7 +50,7 @@ class HabitTrackerController : Initializable {
 
     @FXML private lateinit var button_habitEventDelete: Button
 
-    @FXML private lateinit var textField_habitEventName: TextField
+    @FXML private lateinit var textField_habitEventComment: TextField
 
     @FXML private lateinit var comboBox_habitEventHabit: ComboBox<Any>
 
@@ -57,10 +61,13 @@ class HabitTrackerController : Initializable {
     // P R I V A T E
 
     private var habits = ArrayList<Habit>()
+    private var habitEvents = ArrayList<HabitEvent>()
 
     private lateinit var habitService: Service<Habit, HabitEntity>
+    private lateinit var habitEventService: Service<HabitEvent, HabitEventEntity>
 
     private var selectedItemHabit: Habit? = null
+    private var selectedItemHabitEvent: HabitEvent? = null
 
     private val habitListener = object : ISubscriber<Habit> {
         override fun update(model: Habit) {
@@ -69,14 +76,48 @@ class HabitTrackerController : Initializable {
         }
     }
 
-
+    private val habitEventListener = object : ISubscriber<HabitEvent> {
+        override fun update(model: HabitEvent) {
+            selectedItemHabitEvent = model
+            refreshSelectedHabitEvent()
+        }
+    }
 
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         val habitRepository = HabitRepository()
         val habitMapper = HabitMapper()
         habitService = Service(habitRepository, habitMapper)
 
+        val habitEventRepository = HabitEventRepository()
+        val habitEventMapper = HabitEventMapper()
+        habitEventService = Service(habitEventRepository, habitEventMapper)
+
         refreshHabitsList()
+        refreshHabitEventsList()
+    }
+
+    fun button_habitEventAddOnAction() {
+        val model = habitEventModelFromInput()
+        habitEventService.create(model)
+        refreshHabitEventsList()
+    }
+
+    fun button_habitEventDeleteOnAction() {
+        if (selectedItemHabitEvent != null) {
+            habitEventService.delete(selectedItemHabitEvent!!.id)
+            selectedItemHabitEvent = null
+            refreshSelectedHabitEvent()
+            refreshHabitEventsList()
+        }
+    }
+
+    fun hbox_habitEventCrudOnAction() {
+        if (selectedItemHabitEvent != null) {
+            val model = habitEventModelFromInput()
+            selectedItemHabitEvent = habitEventService.update(selectedItemHabitEvent!!.id, model)
+            refreshHabitEventsList()
+        }
+
     }
 
     private fun refreshHabitsList() {
@@ -99,6 +140,34 @@ class HabitTrackerController : Initializable {
             gridPane_habit.maxHeight = Region.USE_COMPUTED_SIZE
             gridPane_habit.prefWidth = Region.USE_COMPUTED_SIZE
             gridPane_habit.prefHeight = Region.USE_COMPUTED_SIZE
+            GridPane.setMargin(root, Insets(5.0))
+        }
+        comboBox_habitEventHabit.items.clear()
+        for (habit in habits) {
+            comboBox_habitEventHabit.items.add(habit.name)
+        }
+    }
+
+    private fun refreshHabitEventsList() {
+        habitEvents = habitEventService.list() as ArrayList<HabitEvent>
+
+        gridPane_habitEvent.children.clear()
+
+        for ((row, model) in habitEvents.withIndex()) {
+            val fxmlLoader = FXMLLoader(TaycknerApplication::class.java.getResource("view/habit_tracker/item_habitEvent.fxml"))
+            val root: HBox = fxmlLoader.load()
+
+            val itemController = fxmlLoader.getController<ItemHabitEventController>()
+            itemController.set(model)
+            itemController.subscribe(this.habitEventListener)
+
+            gridPane_habitEvent.add(root, 1, row)
+            gridPane_habitEvent.minWidth = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.minHeight = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.maxWidth = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.maxHeight = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.prefWidth = Region.USE_COMPUTED_SIZE
+            gridPane_habitEvent.prefHeight = Region.USE_COMPUTED_SIZE
             GridPane.setMargin(root, Insets(5.0))
         }
     }
@@ -138,5 +207,27 @@ class HabitTrackerController : Initializable {
         }
     }
 
+    private fun refreshSelectedHabitEvent() {
+        if (selectedItemHabitEvent == null) {
+            comboBox_habitEventHabit.promptText = ""
+            datePicker.value = null
+            textField_habitEventComment.text = ""
+            textField_habitEventCount.text = ""
+        }
+        else {
+            comboBox_habitEventHabit.value = selectedItemHabitEvent!!.habit.name
+            datePicker.value = selectedItemHabitEvent!!.date
+            textField_habitEventComment.text = selectedItemHabitEvent!!.comment
+            textField_habitEventCount.text = selectedItemHabitEvent!!.count.toString()
+        }
+    }
 
+    private fun habitEventModelFromInput(): HabitEvent {
+        val date = datePicker.value
+        val comment = textField_habitEventComment.text
+        val count = textField_habitEventCount.text.toInt()
+        var habit = habits.find { it.name == comboBox_habitEventHabit.value}
+        if (habit == null) habit = Habit()
+        return HabitEvent(0, date, comment, count, habit)
+    }
 }

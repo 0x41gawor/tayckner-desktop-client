@@ -39,7 +39,7 @@ class ItemHabitController {
     }
 
     //---// N O T I F Y  S U B S C R I B E R S
-    fun notifySubscribers() {
+    private fun notifySubscribers() {
         for (s in subscribers) {
             s.update(model)
         }

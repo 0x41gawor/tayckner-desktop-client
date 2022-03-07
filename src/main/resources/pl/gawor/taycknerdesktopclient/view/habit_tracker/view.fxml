@@ -78,7 +78,7 @@
             </GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="117.0" prefWidth="960.0">
-            <Button fx:id="button_habitEventAdd" mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_habitEventAdd" mnemonicParsing="false" onAction="#button_habitEventAddOnAction" prefHeight="73.0" prefWidth="52.0">
                <graphic>
                   <ImageView fitHeight="68.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />
@@ -90,15 +90,15 @@
             </Button>
             <ComboBox fx:id="comboBox_habitEventHabit" prefHeight="73.0" prefWidth="93.0" promptText="Habit" />
             <DatePicker fx:id="datePicker" prefHeight="74.0" prefWidth="174.0" />
-            <TextField fx:id="textField_habitEventName" prefHeight="73.0" prefWidth="468.0" promptText="Comment">
+            <TextField fx:id="textField_habitEventComment" onAction="#hbox_habitEventCrudOnAction" prefHeight="73.0" prefWidth="468.0" promptText="Comment">
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <TextField fx:id="textField_habitEventCount" alignment="CENTER" prefHeight="73.0" prefWidth="51.0" promptText="0">
+            <TextField fx:id="textField_habitEventCount" alignment="CENTER" onAction="#hbox_habitEventCrudOnAction" prefHeight="73.0" prefWidth="51.0" promptText="0">
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <Button fx:id="button_habitEventDelete" mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_habitEventDelete" mnemonicParsing="false" onAction="#button_habitEventDeleteOnAction" prefHeight="73.0" prefWidth="52.0">
                <graphic>
                   <ImageView fitHeight="73.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />
