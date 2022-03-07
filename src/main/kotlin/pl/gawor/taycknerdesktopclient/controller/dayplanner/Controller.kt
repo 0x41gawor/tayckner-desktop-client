@@ -184,4 +184,16 @@ class Controller : Initializable, ISubscriber<Schedule> {
         setSelectedDate(DateDir.TODAY)
         refreshList()
     }
+
+    fun button_dayPlannerOnAction() {
+
+    }
+
+    fun button_DayTrackerOnAction() {
+
+    }
+
+    fun button_habitTrackerOnAction() {
+
+    }
 }

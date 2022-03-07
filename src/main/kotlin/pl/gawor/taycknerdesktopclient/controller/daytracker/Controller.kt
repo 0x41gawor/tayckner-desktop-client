@@ -282,4 +282,16 @@ class Controller : Initializable {
         val result = LocalTime.of(hourInt, minuteInt)
         return result
     }
+
+    fun button_dayPlannerOnAction() {
+
+    }
+
+    fun button_DayTrackerOnAction() {
+
+    }
+
+    fun button_habitTrackerOnAction() {
+
+    }
 }

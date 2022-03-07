@@ -230,4 +230,17 @@ class Controller : Initializable {
         if (habit == null) habit = Habit()
         return HabitEvent(0, date, comment, count, habit)
     }
+
+
+    fun button_dayPlannerOnAction() {
+
+    }
+
+    fun button_DayTrackerOnAction() {
+
+    }
+
+    fun button_habitTrackerOnAction() {
+
+    }
 }
