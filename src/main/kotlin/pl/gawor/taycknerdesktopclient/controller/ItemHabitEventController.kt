@@ -33,6 +33,7 @@ class ItemHabitEventController {
         label_year.text = model.date.year.toString()
         label_comment.text = model.comment
         label_count.text = if (model.count != 1) model.count.toString() else ""
+        hbox_root.style = "-fx-background-color: ${model.habit.color};"
     }
 
     @FXML  fun hbox_rootOnMouseClicked() {

@@ -78,7 +78,7 @@
             </GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="117.0" prefWidth="960.0">
-            <Button fx:id="button_habitEventAdd" mnemonicParsing="false" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_habitEventAdd" mnemonicParsing="false" onAction="#button_habitEventAddOnAction" prefHeight="73.0" prefWidth="52.0">
                <graphic>
                   <ImageView fitHeight="68.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />

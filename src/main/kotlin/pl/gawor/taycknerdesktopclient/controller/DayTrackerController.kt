@@ -183,6 +183,7 @@ class DayTrackerController : Initializable {
             textField_activity_breaks.text = ""
         } else {
             comboBox_activiy_category.value = selectedItemActivity!!.category.name
+            comboBox_activiy_category.style = "-fx-background-color: ${selectedItemActivity!!.category.color};"
             textField_activity_name.text = selectedItemActivity!!.name
             textField_activity_startTime.text = selectedItemActivity!!.startTime.toString().substring(0, 5)
             textField_activity_endTime.text = if (selectedItemActivity!!.endTime == null) "" else selectedItemActivity!!.endTime.toString().substring(0, 5)

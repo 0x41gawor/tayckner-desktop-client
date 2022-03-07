@@ -96,6 +96,12 @@ class HabitTrackerController : Initializable {
         refreshHabitEventsList()
     }
 
+    fun button_habitEventAddOnAction() {
+        val model = habitEventModelFromInput()
+        habitEventService.create(model)
+        refreshHabitEventsList()
+    }
+
     private fun refreshHabitsList() {
         habits = habitService.list() as ArrayList<Habit>
 
@@ -117,6 +123,10 @@ class HabitTrackerController : Initializable {
             gridPane_habit.prefWidth = Region.USE_COMPUTED_SIZE
             gridPane_habit.prefHeight = Region.USE_COMPUTED_SIZE
             GridPane.setMargin(root, Insets(5.0))
+        }
+        comboBox_habitEventHabit.items.clear()
+        for (habit in habits) {
+            comboBox_habitEventHabit.items.add(habit.name)
         }
     }
 
@@ -188,9 +198,19 @@ class HabitTrackerController : Initializable {
         }
         else {
             comboBox_habitEventHabit.promptText = selectedItemHabitEvent!!.habit.name
+            comboBox_habitEventHabit.style = "-fx-background-color: ${selectedItemHabitEvent!!.habit.color};"
             datePicker.value = selectedItemHabitEvent!!.date
             textField_habitEventComment.text = selectedItemHabitEvent!!.comment
             textField_habitEventCount.text = selectedItemHabitEvent!!.count.toString()
         }
+    }
+
+    private fun habitEventModelFromInput(): HabitEvent {
+        val date = datePicker.value
+        val comment = textField_habitEventComment.text
+        val count = textField_habitEventCount.text.toInt()
+        var habit = habits.find { it.name == comboBox_habitEventHabit.value}
+        if (habit == null) habit = Habit()
+        return HabitEvent(0, date, comment, count, habit)
     }
 }
