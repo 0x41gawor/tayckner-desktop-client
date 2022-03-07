@@ -162,14 +162,9 @@ class HabitTrackerController : Initializable, NavigationPublisher() {
             itemController.set(model)
             itemController.subscribe(this.habitEventListener)
 
-            gridPane_habitEvent.add(root, 1, row)
-            gridPane_habitEvent.minWidth = Region.USE_COMPUTED_SIZE
-            gridPane_habitEvent.minHeight = Region.USE_COMPUTED_SIZE
-            gridPane_habitEvent.maxWidth = Region.USE_COMPUTED_SIZE
-            gridPane_habitEvent.maxHeight = Region.USE_COMPUTED_SIZE
-            gridPane_habitEvent.prefWidth = Region.USE_COMPUTED_SIZE
-            gridPane_habitEvent.prefHeight = Region.USE_COMPUTED_SIZE
             GridPane.setMargin(root, Insets(5.0))
+            gridPane_habitEvent.prefHeight = Region.USE_PREF_SIZE
+            gridPane_habitEvent.add(root, 1, row)
         }
     }
 

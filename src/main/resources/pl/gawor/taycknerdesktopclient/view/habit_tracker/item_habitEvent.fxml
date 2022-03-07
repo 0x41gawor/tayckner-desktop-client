@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:id="hbox_root" alignment="CENTER_LEFT" onMouseClicked="#hbox_rootOnMouseClicked" prefHeight="80.0" prefWidth="920" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.habittracker.ItemHabitEventController">
+<HBox fx:id="hbox_root" alignment="CENTER_LEFT" onMouseClicked="#hbox_rootOnMouseClicked" minHeight="80.0" maxHeight="80.0" prefHeight="80.0" prefWidth="920" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.habittracker.ItemHabitEventController">
     <padding>
         <Insets left="10.0" right="10.0" />
     </padding>

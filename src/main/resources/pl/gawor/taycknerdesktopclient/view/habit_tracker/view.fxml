@@ -10,24 +10,21 @@
    <HBox prefHeight="1013.0" prefWidth="1920.0">
       <VBox alignment="TOP_CENTER" prefHeight="1013.0" prefWidth="100.0">
          <padding>
-            <Insets top="73.0"/>
+            <Insets top="73.0" />
          </padding>
-         <Button fx:id="button_dayPlanner" mnemonicParsing="false" onAction="#button_dayPlannerOnAction"
-                 prefHeight="79.0" prefWidth="85.0" text="Day-Planner">
+         <Button fx:id="button_dayPlanner" mnemonicParsing="false" onAction="#button_dayPlannerOnAction" prefHeight="79.0" prefWidth="85.0" text="Day-Planner">
             <VBox.margin>
-               <Insets bottom="5.0" top="5.0"/>
+               <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
          </Button>
-         <Button fx:id="button_DayTracker" mnemonicParsing="false" onAction="#button_DayTrackerOnAction"
-                 prefHeight="79.0" prefWidth="85.0" text="Day-Tracker">
+         <Button fx:id="button_DayTracker" mnemonicParsing="false" onAction="#button_DayTrackerOnAction" prefHeight="79.0" prefWidth="85.0" text="Day-Tracker">
             <VBox.margin>
-               <Insets bottom="5.0" top="5.0"/>
+               <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
          </Button>
-         <Button fx:id="button_habitTracker" mnemonicParsing="false" onAction="#button_habitTrackerOnAction"
-                 prefHeight="79.0" prefWidth="85.0" text="Habit-Tracker">
+         <Button fx:id="button_habitTracker" mnemonicParsing="false" onAction="#button_habitTrackerOnAction" prefHeight="79.0" prefWidth="85.0" text="Habit-Tracker">
             <VBox.margin>
-               <Insets bottom="5.0" top="5.0"/>
+               <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
          </Button>
       </VBox>
@@ -39,9 +36,6 @@
          </Label>
          <ScrollPane prefHeight="839.0" prefWidth="380.0">
             <GridPane fx:id="gridPane_habit" alignment="CENTER" prefHeight="839.0" prefWidth="360">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
                <padding>
                   <Insets top="10.0" />
                </padding>
@@ -86,13 +80,12 @@
       <VBox prefHeight="1013.0" prefWidth="960.0">
          <ScrollPane prefHeight="895.0" prefWidth="960.0">
             <GridPane fx:id="gridPane_habitEvent" alignment="CENTER" prefHeight="893.0" prefWidth="940">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
                <padding>
                   <Insets top="10.0" />
-               </padding>
-            </GridPane>
+               </padding></GridPane>
+            <VBox.margin>
+               <Insets top="70.0" />
+            </VBox.margin>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="117.0" prefWidth="960.0">
             <Button fx:id="button_habitEventAdd" mnemonicParsing="false" onAction="#button_habitEventAddOnAction" prefHeight="73.0" prefWidth="52.0">
