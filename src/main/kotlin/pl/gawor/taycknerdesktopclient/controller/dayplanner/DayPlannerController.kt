@@ -11,7 +11,7 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Region
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
-import pl.gawor.taycknerdesktopclient.controller.Observer.INavigationPublisher
+import pl.gawor.taycknerdesktopclient.controller.Observer.NavigationPublisher
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.controller.util.DateDir
 import pl.gawor.taycknerdesktopclient.model.Schedule
@@ -26,7 +26,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 //---// S U B S C R I B E R
-class DayPlannerController : Initializable, ISubscriber<Schedule>, INavigationPublisher() {
+class DayPlannerController : Initializable, ISubscriber<Schedule>, NavigationPublisher() {
     @FXML private lateinit var button_next: Button
 
     @FXML private lateinit var label_date: Label

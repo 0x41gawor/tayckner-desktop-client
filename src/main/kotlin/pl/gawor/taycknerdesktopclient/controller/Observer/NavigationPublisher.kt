@@ -1,7 +1,7 @@
 package pl.gawor.taycknerdesktopclient.controller.Observer
 
 
-open class INavigationPublisher {
+open class NavigationPublisher {
     //---// S U B S C R I B E R S
     private val subscribers: ArrayList<INavigationSubscriber> = ArrayList()
 

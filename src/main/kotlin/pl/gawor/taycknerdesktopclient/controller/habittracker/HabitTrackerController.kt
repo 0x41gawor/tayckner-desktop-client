@@ -11,7 +11,7 @@ import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
-import pl.gawor.taycknerdesktopclient.controller.Observer.INavigationPublisher
+import pl.gawor.taycknerdesktopclient.controller.Observer.NavigationPublisher
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.model.Habit
 import pl.gawor.taycknerdesktopclient.model.HabitEvent
@@ -27,7 +27,7 @@ import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HabitTrackerController : Initializable, INavigationPublisher() {
+class HabitTrackerController : Initializable, NavigationPublisher() {
 
     // H A B I T
 

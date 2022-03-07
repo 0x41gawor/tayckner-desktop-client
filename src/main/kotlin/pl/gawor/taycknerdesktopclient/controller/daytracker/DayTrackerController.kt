@@ -11,7 +11,7 @@ import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import pl.gawor.taycknerdesktopclient.TaycknerApplication
-import pl.gawor.taycknerdesktopclient.controller.Observer.INavigationPublisher
+import pl.gawor.taycknerdesktopclient.controller.Observer.NavigationPublisher
 import pl.gawor.taycknerdesktopclient.controller.Observer.ISubscriber
 import pl.gawor.taycknerdesktopclient.controller.util.DateDir
 import pl.gawor.taycknerdesktopclient.model.Activity
@@ -30,7 +30,7 @@ import java.time.LocalTime
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DayTrackerController : Initializable, INavigationPublisher() {
+class DayTrackerController : Initializable, NavigationPublisher() {
 
     // C A T E G O R Y
 
