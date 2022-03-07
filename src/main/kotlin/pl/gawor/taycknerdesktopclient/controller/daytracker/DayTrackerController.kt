@@ -152,15 +152,11 @@ class DayTrackerController : Initializable, NavigationPublisher() {
             itemController.set(model)
             itemController.subscribe(this.activityListener)
 
-            gridPane_activity.add(root, 1, row)
-            gridPane_activity.minWidth = Region.USE_COMPUTED_SIZE
-            gridPane_activity.minHeight = Region.USE_COMPUTED_SIZE
-            gridPane_activity.maxWidth = Region.USE_COMPUTED_SIZE
-            gridPane_activity.maxHeight = Region.USE_COMPUTED_SIZE
-            gridPane_activity.prefWidth = Region.USE_COMPUTED_SIZE
-            gridPane_activity.prefHeight = Region.USE_COMPUTED_SIZE
+            gridPane_activity.add(root, 0, row)
+            gridPane_activity.prefHeight = Region.USE_PREF_SIZE
             GridPane.setMargin(root, Insets(10.0))
         }
+
     }
 
     private fun refreshSelectedCategory() {
