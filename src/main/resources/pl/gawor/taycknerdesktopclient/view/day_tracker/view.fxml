@@ -12,20 +12,55 @@
          <padding>
             <Insets top="73.0" />
          </padding>
-         <Button fx:id="button_dayPlanner" mnemonicParsing="false" onAction="#button_dayPlannerOnAction" prefHeight="79.0" prefWidth="85.0" text="Day-Planner">
+         <Button fx:id="button_dayPlanner" mnemonicParsing="false" onAction="#button_dayPlannerOnAction" prefHeight="70.0" prefWidth="70.0">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/day-planner.png"/>
+               </ImageView>
+            </graphic>
          </Button>
-         <Button fx:id="button_DayTracker" mnemonicParsing="false" onAction="#button_DayTrackerOnAction" prefHeight="79.0" prefWidth="85.0" text="Day-Tracker">
+         <Button fx:id="button_DayTracker" mnemonicParsing="false" onAction="#button_DayTrackerOnAction" prefHeight="79.0" prefWidth="85.0">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/day-tracker.png"/>
+               </ImageView>
+            </graphic>
          </Button>
-         <Button fx:id="button_habitTracker" mnemonicParsing="false" onAction="#button_habitTrackerOnAction" prefHeight="79.0" prefWidth="85.0" text="Habit-Tracker">
+         <Button fx:id="button_habitTracker" mnemonicParsing="false" onAction="#button_habitTrackerOnAction" prefHeight="79.0" prefWidth="85.0">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/habit-tracker.png"/>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="button_switchTheme" mnemonicParsing="false" prefHeight="79.0" prefWidth="85.0">
+            <VBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/switch-on.png"/>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="button_logout" mnemonicParsing="false" prefHeight="79.0" prefWidth="85.0">
+            <VBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/logout.png"/>
+               </ImageView>
+            </graphic>
          </Button>
       </VBox>
       <VBox alignment="CENTER" prefHeight="1013.0" prefWidth="380.0">
