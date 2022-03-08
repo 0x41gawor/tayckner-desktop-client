@@ -93,3 +93,7 @@
 .scroll-pane .corner{
     -fx-background-color: transparent;
 }
+
+.button:hover {
+    -fx-background-color: rgba(0,0,0,0.1);
+}
