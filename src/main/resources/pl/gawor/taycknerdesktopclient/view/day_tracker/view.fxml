@@ -54,10 +54,10 @@
          </Button>
          <Button fx:id="button_switchTheme" alignment="CENTER" mnemonicParsing="false" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
             <VBox.margin>
-               <Insets bottom="5.0" top="490.0" />
+               <Insets bottom="10.0" top="480.0" />
             </VBox.margin>
             <graphic>
-               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="49.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../img/icons/switch-on.png" />
                </ImageView>
             </graphic>
@@ -67,7 +67,7 @@
                <Insets bottom="5.0" top="10.0" />
             </VBox.margin>
             <graphic>
-               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../img/icons/logout.png" />
                </ImageView>
             </graphic>
