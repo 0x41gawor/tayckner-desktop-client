@@ -1,0 +1,17 @@
+.anchorPane{
+    -fx-background-color: radial-gradient(center 50% 50% , radius 800px , #ffebcd, #008080);
+}
+
+.transparent {
+    -fx-background-color: transparent;
+}
+
+.label_date {
+    -fx-text-fill: #ffffff;
+}
+
+.label_module {
+    -fx-text-fill: #ffffff;
+}
+
+.scroll-pane > .viewport  { -fx-background-color: transparent; }
