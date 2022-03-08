@@ -74,7 +74,7 @@
          </Button>
       </VBox>
       <VBox alignment="CENTER" prefHeight="1013.0" prefWidth="380.0" styleClass="transparent" stylesheets="@css/style.css">
-         <Label contentDisplay="CENTER" prefHeight="70.0" prefWidth="213.0" styleClass="label_module" text="Day-Tracker">
+         <Label contentDisplay="CENTER" prefHeight="93.0" prefWidth="213.0" styleClass="label_module" text="Day-Tracker">
             <font>
                <Font size="36.0" />
             </font>
