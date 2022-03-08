@@ -23,8 +23,16 @@
 .combo-box {
     -fx-background-color: rgba(0,0,0,0.05);
     -fx-text-fill: #ffffff;
+    -fx-highlight-fill: #ffffff;
     -fx-prompt-text-fill: #aaaaaa;
 }
+
+.color-picker {
+    -fx-background-color: rgba(0,0,0,0.05);
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #aaaaaa;
+}
+
 
 .text-field {
     -fx-background-color: rgba(0,0,0,0.05);
@@ -47,4 +55,23 @@
 
 .text-area .scroll-pane .content{
     -fx-background-color: transparent;
+}
+
+.combo-box .list-cell
+{
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-background-color: rgba(0,0,0,0.05), rgba(0,0,0,0.05);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: rgba(0,0,0,0.20);;
+    -fx-text-fill: white;
 }
