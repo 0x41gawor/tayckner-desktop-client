@@ -24,6 +24,7 @@ import pl.gawor.taycknerdesktopclient.service.Service
 import pl.gawor.taycknerdesktopclient.service.mapper.HabitEventMapper
 import pl.gawor.taycknerdesktopclient.service.mapper.HabitMapper
 import java.net.URL
+import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -92,6 +93,8 @@ class HabitTrackerController : Initializable, NavigationPublisher() {
         val habitEventRepository = HabitEventRepository()
         val habitEventMapper = HabitEventMapper()
         habitEventService = Service(habitEventRepository, habitEventMapper)
+
+        datePicker.value = LocalDate.now()
 
         refreshHabitsList()
         refreshHabitEventsList()
