@@ -279,4 +279,9 @@ class DayTrackerController : Initializable, NavigationPublisher() {
         val result = LocalTime.of(hourInt, minuteInt)
         return result
     }
+
+    fun label_dateOnMouseClicked() {
+        setSelectedDate(DateDir.TODAY)
+        refreshActivitiesList()
+    }
 }
