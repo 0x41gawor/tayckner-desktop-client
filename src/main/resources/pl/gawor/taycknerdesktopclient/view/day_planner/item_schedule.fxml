@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER_LEFT" onMouseClicked="#hboxOnMouseClicked" minHeight="60.0" prefHeight="60.0" maxHeight="60.0" prefWidth="930" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.dayplanner.ItemScheduleController">
+<HBox alignment="CENTER_LEFT" maxHeight="60.0" minHeight="60.0" onMouseClicked="#hboxOnMouseClicked" prefHeight="60.0" prefWidth="930" styleClass="hbox" stylesheets="@css/item_schedule.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.dayplanner.ItemScheduleController">
     <padding>
         <Insets left="10.0" right="10.0" />
     </padding>
-    <Label fx:id="label_name" prefHeight="30.0" prefWidth="735.0" text="Work">
+    <Label fx:id="label_name" prefHeight="30.0" prefWidth="651.0" text="Work">
         <font>
           <Font size="20.0" />
         </font>

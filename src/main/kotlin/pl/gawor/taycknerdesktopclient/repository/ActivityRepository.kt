@@ -72,7 +72,7 @@ class ActivityRepository : ICrudRepository<ActivityEntity> {
         println("ActivityRepository.list(date = $date)")
         val query = "select * from activity where date like '%$date%'"
         val result = listQuery(query)
-        println("ActivityRepository.list(date = $date) = $result\"")
+        println("ActivityRepository.list(date = $date) = $result")
         return result
     }
 
