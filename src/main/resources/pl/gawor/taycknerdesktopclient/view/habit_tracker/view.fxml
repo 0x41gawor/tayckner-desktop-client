@@ -6,26 +6,61 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.habittracker.HabitTrackerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.habittracker.HabitTrackerController">
    <HBox prefHeight="1013.0" prefWidth="1920.0">
-      <VBox alignment="TOP_CENTER" prefHeight="1013.0" prefWidth="100.0">
+      <VBox alignment="TOP_CENTER" prefHeight="1013.0" prefWidth="100.0" styleClass="left-bar">
          <padding>
             <Insets top="73.0" />
          </padding>
-         <Button fx:id="button_dayPlanner" mnemonicParsing="false" onAction="#button_dayPlannerOnAction" prefHeight="79.0" prefWidth="85.0" text="Day-Planner">
+         <Button fx:id="button_dayPlanner" mnemonicParsing="false" onAction="#button_dayPlannerOnAction" prefHeight="70.0" prefWidth="70.0" styleClass="transparent">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/day-planner.png" />
+               </ImageView>
+            </graphic>
          </Button>
-         <Button fx:id="button_DayTracker" mnemonicParsing="false" onAction="#button_DayTrackerOnAction" prefHeight="79.0" prefWidth="85.0" text="Day-Tracker">
+         <Button fx:id="button_DayTracker" mnemonicParsing="false" onAction="#button_DayTrackerOnAction" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/day-tracker.png" />
+               </ImageView>
+            </graphic>
          </Button>
-         <Button fx:id="button_habitTracker" mnemonicParsing="false" onAction="#button_habitTrackerOnAction" prefHeight="79.0" prefWidth="85.0" text="Habit-Tracker">
+         <Button fx:id="button_habitTracker" mnemonicParsing="false" onAction="#button_habitTrackerOnAction" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/habit-tracker.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="button_switchTheme" alignment="CENTER" mnemonicParsing="false" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
+            <VBox.margin>
+               <Insets bottom="10.0" top="480.0" />
+            </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="49.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/switch-on.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="button_logout" alignment="CENTER" mnemonicParsing="false" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
+            <VBox.margin>
+               <Insets bottom="5.0" top="10.0" />
+            </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/logout.png" />
+               </ImageView>
+            </graphic>
          </Button>
       </VBox>
       <VBox alignment="CENTER" prefHeight="1013.0" prefWidth="380.0">
@@ -34,15 +69,15 @@
                <Font size="36.0" />
             </font>
          </Label>
-         <ScrollPane prefHeight="839.0" prefWidth="380.0">
-            <GridPane fx:id="gridPane_habit" alignment="CENTER" prefHeight="839.0" prefWidth="360">
+         <ScrollPane prefHeight="839.0" prefWidth="380.0" styleClass="transparent">
+            <GridPane fx:id="gridPane_habit" alignment="CENTER" prefHeight="839.0" prefWidth="360" styleClass="transparent">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="131.0" prefWidth="380.0">
-            <Button fx:id="button_habitAdd" mnemonicParsing="false" onAction="#button_habitAddOnAction" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_habitAdd" mnemonicParsing="false" onAction="#button_habitAddOnAction" prefHeight="50.0" prefWidth="50.0" styleClass="transparent">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />
@@ -66,7 +101,7 @@
                   </VBox.margin>
                </TextArea>
             </VBox>
-            <Button fx:id="button_habitDelete" mnemonicParsing="false" onAction="#button_habitDeleteOnAction" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_habitDelete" mnemonicParsing="false" onAction="#button_habitDeleteOnAction" prefHeight="50.0" prefWidth="50.0" styleClass="transparent">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />
@@ -78,17 +113,17 @@
          </HBox>
       </VBox>
       <VBox prefHeight="1013.0" prefWidth="960.0">
-         <ScrollPane prefHeight="895.0" prefWidth="960.0">
-            <GridPane fx:id="gridPane_habitEvent" alignment="CENTER" prefHeight="893.0" prefWidth="940">
+         <ScrollPane prefHeight="825.0" prefWidth="960.0" styleClass="transparent">
+            <GridPane fx:id="gridPane_habitEvent" alignment="CENTER" prefHeight="893.0" prefWidth="940" styleClass="transparent">
                <padding>
                   <Insets top="10.0" />
                </padding></GridPane>
             <VBox.margin>
-               <Insets top="70.0" />
+               <Insets top="71.0" />
             </VBox.margin>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="117.0" prefWidth="960.0">
-            <Button fx:id="button_habitEventAdd" mnemonicParsing="false" onAction="#button_habitEventAddOnAction" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_habitEventAdd" mnemonicParsing="false" onAction="#button_habitEventAddOnAction" prefHeight="73.0" prefWidth="52.0" styleClass="transparent">
                <graphic>
                   <ImageView fitHeight="68.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />
@@ -108,9 +143,9 @@
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <Button fx:id="button_habitEventDelete" mnemonicParsing="false" onAction="#button_habitEventDeleteOnAction" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_habitEventDelete" mnemonicParsing="false" onAction="#button_habitEventDeleteOnAction" prefHeight="73.0" prefWidth="52.0" styleClass="transparent">
                <graphic>
-                  <ImageView fitHeight="73.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />
                   </ImageView>
                </graphic>

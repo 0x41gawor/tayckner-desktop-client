@@ -6,42 +6,77 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.daytracker.DayTrackerController">
-   <HBox prefHeight="1013.0" prefWidth="1920.0">
-      <VBox alignment="TOP_CENTER" prefHeight="1013.0" prefWidth="100.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1920.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.gawor.taycknerdesktopclient.controller.daytracker.DayTrackerController">
+   <HBox prefHeight="1013.0" prefWidth="1920.0" styleClass="transparent" stylesheets="@css/style.css">
+      <VBox alignment="TOP_CENTER" prefHeight="1013.0" prefWidth="100.0" styleClass="left-bar" stylesheets="@css/style.css">
          <padding>
             <Insets top="73.0" />
          </padding>
-         <Button fx:id="button_dayPlanner" mnemonicParsing="false" onAction="#button_dayPlannerOnAction" prefHeight="79.0" prefWidth="85.0" text="Day-Planner">
+         <Button fx:id="button_dayPlanner" mnemonicParsing="false" onAction="#button_dayPlannerOnAction" prefHeight="70.0" prefWidth="70.0" styleClass="transparent">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/day-planner.png" />
+               </ImageView>
+            </graphic>
          </Button>
-         <Button fx:id="button_DayTracker" mnemonicParsing="false" onAction="#button_DayTrackerOnAction" prefHeight="79.0" prefWidth="85.0" text="Day-Tracker">
+         <Button fx:id="button_DayTracker" mnemonicParsing="false" onAction="#button_DayTrackerOnAction" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/day-tracker.png" />
+               </ImageView>
+            </graphic>
          </Button>
-         <Button fx:id="button_habitTracker" mnemonicParsing="false" onAction="#button_habitTrackerOnAction" prefHeight="79.0" prefWidth="85.0" text="Habit-Tracker">
+         <Button fx:id="button_habitTracker" mnemonicParsing="false" onAction="#button_habitTrackerOnAction" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/habit-tracker.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="button_switchTheme" alignment="CENTER" mnemonicParsing="false" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
+            <VBox.margin>
+               <Insets bottom="10.0" top="480.0" />
+            </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="49.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/switch-on.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="button_logout" alignment="CENTER" mnemonicParsing="false" prefHeight="79.0" prefWidth="85.0" styleClass="transparent">
+            <VBox.margin>
+               <Insets bottom="5.0" top="10.0" />
+            </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../img/icons/logout.png" />
+               </ImageView>
+            </graphic>
          </Button>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="1013.0" prefWidth="380.0">
-         <Label contentDisplay="CENTER" prefHeight="83.0" prefWidth="170.0" text="Categories">
+      <VBox alignment="CENTER" prefHeight="1013.0" prefWidth="380.0" styleClass="transparent" stylesheets="@css/style.css">
+         <Label contentDisplay="CENTER" prefHeight="93.0" prefWidth="213.0" styleClass="label_module" text="Day-Tracker">
             <font>
                <Font size="36.0" />
             </font>
          </Label>
-         <ScrollPane prefHeight="839.0" prefWidth="380.0">
-            <GridPane fx:id="gridPane_category" prefHeight="839.0" prefWidth="360">
+         <ScrollPane prefHeight="849.0" prefWidth="379.0" styleClass="transparent" stylesheets="@css/style.css">
+            <GridPane fx:id="gridPane_category" prefHeight="839.0" prefWidth="360.0" styleClass="transparent" stylesheets="@css/style.css">
                <padding>
                   <Insets top="10.0" />
                </padding></GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="131.0" prefWidth="380.0">
-            <Button fx:id="button_categoyAdd" mnemonicParsing="false" onAction="#button_category_addOnAction" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_categoyAdd" mnemonicParsing="false" onAction="#button_category_addOnAction" prefHeight="50.0" prefWidth="50.0" styleClass="transparent">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />
@@ -52,20 +87,20 @@
                   <VBox.margin>
                      <Insets left="5.0" right="5.0" />
                   </VBox.margin>
-                  <TextField fx:id="textField_categoryName" onAction="#hbox_category_crud_inputsOnAction" prefHeight="25.0" prefWidth="199.0" promptText="Category Name">
+                  <TextField fx:id="textField_categoryName" onAction="#hbox_category_crud_inputsOnAction" prefHeight="25.0" prefWidth="199.0" promptText="Category Name" styleClass="transparent">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <ColorPicker fx:id="colorPicker" prefHeight="25.0" prefWidth="63.0" />
+                  <ColorPicker fx:id="colorPicker" prefHeight="25.0" prefWidth="63.0" styleClass="transparent" />
                </HBox>
-               <TextArea fx:id="textArea_categoryDescription" prefHeight="112.0" prefWidth="257.0" promptText="Category description">
+               <TextArea fx:id="textArea_categoryDescription" prefHeight="112.0" prefWidth="257.0" promptText="Category description" styleClass="transparent">
                   <VBox.margin>
                      <Insets bottom="10.0" left="5.0" right="5.0" />
                   </VBox.margin>
                </TextArea>
             </VBox>
-            <Button fx:id="button_categoryDelete" mnemonicParsing="false" onAction="#button_category_deleteOnAction" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="button_categoryDelete" mnemonicParsing="false" onAction="#button_category_deleteOnAction" prefHeight="50.0" prefWidth="50.0" styleClass="transparent">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />
@@ -76,36 +111,36 @@
             </padding>
          </HBox>
       </VBox>
-      <VBox prefHeight="1013.0" prefWidth="960.0">
+      <VBox prefHeight="1013.0" prefWidth="960.0" styleClass="transparent" stylesheets="@css/style.css">
          <HBox alignment="CENTER" prefHeight="71.0" prefWidth="960.0">
-            <Button fx:id="butoon_prev" mnemonicParsing="false" onAction="#button_prevOnMouseClicked" prefHeight="38.0" prefWidth="50.0">
+            <Button fx:id="butoon_prev" mnemonicParsing="false" onAction="#button_prevOnMouseClicked" prefHeight="38.0" prefWidth="50.0" styleClass="transparent">
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/day-prev.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Label fx:id="label_date" alignment="CENTER" prefHeight="70.0" prefWidth="333.0" text="24 feb 2022">
+            <Label fx:id="label_date" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#label_dateOnMouseClicked" prefHeight="70.0" prefWidth="333.0" styleClass="label_date" text="24 feb 2022">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-            <Button fx:id="button_next" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#button_nextOnMouseClicked" prefHeight="38.0" prefWidth="50.0">
+            <Button fx:id="button_next" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#button_nextOnMouseClicked" prefHeight="38.0" prefWidth="50.0" styleClass="transparent">
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/day-next.png" />
                   </ImageView>
                </graphic>
             </Button>
          </HBox>
-         <ScrollPane prefHeight="825.0" prefWidth="960.0">
-            <GridPane fx:id="gridPane_activity" alignment="CENTER" prefHeight="824.0" prefWidth="940">
+         <ScrollPane prefHeight="825.0" prefWidth="960.0" styleClass="transparent" stylesheets="@css/style.css">
+            <GridPane fx:id="gridPane_activity" alignment="CENTER" prefHeight="824.0" prefWidth="940" styleClass="transparent" stylesheets="@css/style.css">
                <padding>
                   <Insets top="5.0" />
                </padding></GridPane>
          </ScrollPane>
          <HBox alignment="CENTER" prefHeight="117.0" prefWidth="960.0">
-            <Button fx:id="button_activity_add" mnemonicParsing="false" onAction="#button_activity_addOnAction" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_activity_add" mnemonicParsing="false" onAction="#button_activity_addOnAction" prefHeight="73.0" prefWidth="52.0" styleClass="transparent">
                <graphic>
                   <ImageView fitHeight="68.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/add.png" />
@@ -115,7 +150,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <ComboBox fx:id="comboBox_activiy_category" prefHeight="73.0" prefWidth="93.0" promptText="Category" />
+            <ComboBox fx:id="comboBox_activiy_category" prefHeight="73.0" prefWidth="93.0" promptText="Category" styleClass="combo-box" />
             <TextField fx:id="textField_activity_name" onAction="#hbox_activity_crudOnInputsOnAction" prefHeight="73.0" prefWidth="407.0" promptText="Activity name">
                <font>
                   <Font size="24.0" />
@@ -132,9 +167,9 @@
                <font>
                   <Font size="24.0" />
                </font></TextField>
-            <Button fx:id="button_activity_delete" mnemonicParsing="false" onAction="#button_activity_deleteOnAction" prefHeight="73.0" prefWidth="52.0">
+            <Button fx:id="button_activity_delete" mnemonicParsing="false" onAction="#button_activity_deleteOnAction" prefHeight="73.0" prefWidth="52.0" styleClass="transparent">
                <graphic>
-                  <ImageView fitHeight="73.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@../img/delete.png" />
                   </ImageView>
                </graphic>
